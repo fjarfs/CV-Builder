@@ -1,0 +1,600 @@
+{
+  "personal": {
+    "fullName": "Fajar Sujito",
+    "jobTitle": "Engineering Leader - Full Stack Developer",
+    "location": "Jakarta, Indonesia",
+    "phone": "+6281903492372",
+    "email": "fjarfs@gmail.com"
+  },
+  "links": [
+    {
+      "label": "Portfolio",
+      "url": "https://fajarsujito.my.id"
+    },
+    {
+      "label": "Linkedin",
+      "url": "https://linkedin.com/in/fajarsujito"
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/fjarfs"
+    }
+  ],
+  "summary": "Full-Stack Developer with 10+ years of experience building and maintaining web applications across frontend, backend, and cloud infrastructure.\n\nI work with React, Next.js, TypeScript, Laravel, Node.js, Go, and AWS. My experience includes building responsive interfaces, admin dashboards, API integrations, backend services, automation, and maintaining production systems.\n\nI also actively use AI-assisted development tools such as Claude Code, OpenAI Codex, Cursor, and other modern AI tools to improve development speed, explore solutions, automate repetitive tasks, and accelerate software delivery. In recent roles, I have led engineering direction, mentored developers, and coordinated cross-functional delivery across product, design, and backend teams. I combine technical execution with leadership to ship dependable products and improve long-term team velocity.",
+  "skills": {
+    "column1": [
+      "React",
+      "Next.js",
+      "Go",
+      "MySQL",
+      "Microservices",
+      "Cloudflare",
+      "RabbitMQ",
+      "REST API",
+      "Tailwind CSS"
+    ],
+    "column2": [
+      "TypeScript",
+      "Node.js",
+      "Laravel",
+      "Redis",
+      "AWS",
+      "ELK",
+      "Vercel",
+      "React Native",
+      "AI Assisted Development"
+    ]
+  },
+  "employment": [
+    {
+      "id": "emp-1",
+      "company": "Independent Product Builder",
+      "employmentType": "Self-Employed",
+      "companyDateRange": "Jan 2023 — Present",
+      "roles": [
+        {
+          "id": "role-1-1",
+          "jobTitle": "Full Stack Developer",
+          "dateRange": "",
+          "bullets": [
+            "Independently owned architecture and product implementation for production web applications built with React, Next.js, and TypeScript.",
+            "Led the design of reusable UI patterns and scalable component structures to keep features consistent, maintainable, and fast to ship.",
+            "Improved frontend responsiveness, SEO, accessibility, and user experience through interface refactoring, page optimization, and cleaner interaction flows.",
+            "Integrated backend APIs for authentication, analytics, payments, and product workflows, ensuring frontend behavior stayed reliable across releases.",
+            "Drive code quality and workflow improvements that made the application easier to extend and support over time."
+          ],
+          "techStack": "React, Next.js, Laravel, Go, TypeScript, Tailwind CSS, REST API, AWS, Sentry, PostDog, Cloudflare, Vercel"
+        }
+      ]
+    },
+    {
+      "id": "emp-1790591559521",
+      "company": "PT Surya Anugrah Mulya",
+      "employmentType": "Full-time",
+      "companyDateRange": "Jan 2024 - Aug 2026",
+      "roles": [
+        {
+          "id": "role-1790591559521",
+          "jobTitle": "Engineering Lead",
+          "dateRange": "Oct 2024 — Aug 2026",
+          "bullets": [
+            "Lead end to end IT strategy, including cloud migration, infrastructure optimization, and compliance readiness.",
+            "Architected failover gateway system to ensure business continuity for high frequency trading operations.",
+            "Directed cross department collaboration between IT, Product, Corporate Strategy and Operations for process automation and secure data flow.",
+            "Migrated production environment to AWS, improving uptime and observability.",
+            "Initiated and implemented AI-assisted development practices across the engineering team to accelerate development, automate repetitive tasks, and improve delivery efficiency using modern AI coding tools.",
+            "Built and mentored multi disciplinary team (Backend, DevOps, QA) to strengthen engineering discipline and delivery speed.",
+            "Established internal BCP (Business Continuity Plan) framework and monitoring standards across critical systems.",
+            "Mentor and develop IT staff, fostering a culture of innovation and continuous improvement."
+          ],
+          "techStack": "AWS, Cloudflare, MySQL, Redis, RabbitMQ, ELK, REST API, FIX API, Microservices, Laravel, Node JS, Go, FIX API, AI assisted"
+        },
+        {
+          "id": "role-1790591581836",
+          "jobTitle": "Research And Development Lead",
+          "dateRange": "Jan 2024 - Oct 2024",
+          "bullets": [
+            "Initiated the architecture modernization roadmap, introducing microservices and event driven patterns.",
+            "Designed and implemented trading algorithm simulation environment for internal strategy testing.",
+            "Created proof of concept systems integrating multiple liquidity providers with REST & FIX API.",
+            "Pioneered internal DevOps culture, introducing Git workflow, CI/CD pipelines, and automated deployment scripts.",
+            "Collaborated with the CTO to translate business strategy into measurable engineering deliverables.",
+            "Led a small R&D unit to explore scalability, latency reduction, and real time data broadcasting solutions."
+          ],
+          "techStack": "AWS, Laravel, Python, Go, Node.JS, Meta Trader, FIX API"
+        }
+      ]
+    },
+    {
+      "id": "emp-1790592346026",
+      "company": "MIFX",
+      "employmentType": "Full-time",
+      "companyDateRange": "May 2022 - Dec 2023",
+      "roles": [
+        {
+          "id": "role-1790592346026",
+          "jobTitle": "Engineering Lead",
+          "dateRange": "Jan 2023 - Dec 2023",
+          "bullets": [
+            "Focus on managing the Backend team",
+            "Direct manage 3 tribe leaders/lead developer/technical lead",
+            "Indirect manage more than 10 engineers",
+            "Developed trading platform features for web applications.",
+            "Collaborated with frontend and backend teams to improve user experience and\napplication performance.",
+            "Implemented scalable APIs and frontend integrations for financial products.",
+            "Initiate using event-driven microservices architecture, saga patterns, CQRS\npatterns, messages broker (RabbitMQ), AWS Api Gateway, service and repository\npattern, and Socket IO for realtime notification"
+          ],
+          "techStack": "Laravel, MySQL, Redis, ELK, Microservices"
+        },
+        {
+          "id": "role-1790592469105",
+          "jobTitle": "Technical Lead",
+          "dateRange": "May 2022 - Dec 2022",
+          "bullets": [
+            "AMB Megatrend is an FX and commodities investment fund founded with minimum amount for investment is US$ 100.000",
+            "Architect microservices infrastructure for AMB Megatrend project on AWS (API Gateway, NLB, ECS, AURORA, ELK, Redis, Docker)",
+            "Architect & implement Elasticsearch LogStash and Kibana",
+            "Initiate using event-driven microservices architecture,  saga patterns, CQRS patterns, messages broker (RabbitMQ), AWS Api Gateway, service and repository pattern, Socket IO for realtime notification, code standardization, Microservices patterns, and unit tests for AMB, MIFX, and Value Trade projects",
+            "Financial Information Exchange(FIX) API OneZero",
+            "Architect microservices infrastructure for MIFX project on Alibaba Cloud",
+            "Leading, Managing & Planning the Hiring process for Tech talents"
+          ],
+          "techStack": "AWS, Laravel, Node.JS, RabbitMq, FIX, Socket IO, ELK, Redis, Docker, Microservices"
+        }
+      ]
+    },
+    {
+      "id": "emp-1790607616461",
+      "company": "DXTR ASIA",
+      "employmentType": "Full-time",
+      "companyDateRange": "Jul 2018 - May 2022",
+      "roles": [
+        {
+          "id": "role-1790607616461",
+          "jobTitle": "Technical Lead",
+          "dateRange": "Jul 2020 - May 2022",
+          "bullets": [
+            "Lead a cross-functional engineering team of ~15 engineers across Backend, Frontend, and QA",
+            "Manage vendors and coordinate delivery across multiple teams",
+            "Drive Agile practices and ensure efficient project execution",
+            "Collaborate with CTO, Project Manager, and key stakeholders",
+            "Review code quality and enforce engineering best practices",
+            "Design and scale high-performance systems handling millions of notifications and data exports",
+            "Build and evolve microservices and event-driven systems on AWS",
+            "Improve CI/CD, deployment, cloud infrastructure, and system reliability",
+            "Monitor system performance and issues using New Relic",
+            "Lead technical decisions, architecture, security reviews, and engineering standards",
+            "Mentor engineers and support hiring, onboarding, and performance reviews"
+          ],
+          "techStack": "Angular, React, Node.js, Laravel, Lumen, MySQL, DynamoDB, AWS, ECS, EKS, API Gateway, Aurora, Redis, ELK, Docker, CI/CD, Microservices"
+        },
+        {
+          "id": "role-1790607809945",
+          "jobTitle": "Lead Backend Developer",
+          "dateRange": "Jul 2019 - Jul 2020",
+          "bullets": [
+            " Design and develop scalable systems using microservices architecture",
+            "Lead migration of SRC projects from monolith to microservices",
+            "Lead backend technical decisions focused on performance, reliability, and maintainability",
+            "Collaborate with CTOs, Project Managers, Tech Leads, business, Frontend, and QA teams",
+            "Lead and mentor a backend team of 5 engineers",
+            "Review code and enforce clean code and engineering best practices",
+            "Improve application performance, system reliability, and deployment processes",
+            "Research and implement messaging systems using AWS SQS and SNS",
+            "Monitor system health and deployments using New Relic, Jenkins, and SonarQube",
+            "Build and maintain large-scale applications including Spotme, Toyota Admin, AYO-SRC, and IQOS",
+            "Mentor junior engineers through onboarding, architecture, and pair programming"
+          ],
+          "techStack": "PHP, Laravel, React.js, React Native, AngularJS, MySQL, RDS, DynamoDB, Redis, AWS, ECS, EC2, Docker, Jenkins, Nginx, Firebase, New Relic, SonarQube, Git, Jira"
+        },
+        {
+          "id": "role-1790608013714",
+          "jobTitle": "Senior Backend Developer",
+          "dateRange": "Jul 2018 - 2019",
+          "bullets": [
+            "Built the backend system for SRC from the ground up, supporting thousands of concurrent users",
+            "Developed monolithic systems covering B2B, B2C, and DTE platforms",
+            "Designed and developed APIs using Laravel and Lumen",
+            "Designed data and caching solutions using MySQL, Redis, and DynamoDB",
+            "Integrated OTP messaging and Gojek services",
+            "Monitored server performance and application errors using New Relic and Flare",
+            "Troubleshot production issues, application load, and third-party integrations",
+            "Collaborated with Project Managers, Frontend, and QA teams to ensure smooth deliver"
+          ],
+          "techStack": "PHP, Laravel, React.js, React Native, AngularJS, MySQL, RDS, DynamoDB, Redis, AWS, ECS, EC2, Docker, Jenkins, Nginx, Firebase, New Relic, SonarQube, Git, Jira"
+        }
+      ]
+    },
+    {
+      "id": "emp-1790608946977",
+      "company": "PT Internet Solusi Layanan Informasi Mandiri",
+      "employmentType": "Full-time",
+      "companyDateRange": "Apr 2018 - May 2018",
+      "roles": [
+        {
+          "id": "role-1790608946977",
+          "jobTitle": "Full Stack Developer",
+          "dateRange": "",
+          "bullets": [
+            "Coordinate with CTO and business team regarding the criteria of the system to be built",
+            "Analyzing database structure and user interfaces",
+            "Applications that are built are company profile, E-commerce, E-Government, GIS, and application administrators and reports"
+          ],
+          "techStack": "PHP, CI, PostgreSQL, Apache, Javascript, jQuery, Ajax, Html, CSS, Trello"
+        }
+      ]
+    },
+    {
+      "id": "emp-1790608166588",
+      "company": "PT Rayanusa Tekno Medika",
+      "employmentType": "Freelance",
+      "companyDateRange": "Apr 2020 - Apr 2026",
+      "roles": [
+        {
+          "id": "role-1790608166588",
+          "jobTitle": "Lead Engineer",
+          "dateRange": "",
+          "bullets": [
+            "Develop Backend & Frontend EMOP POGI Electronic Management Office POGI using Laravel, ReactJS and MySQL",
+            "Architect & implement infrastructure EMOP project",
+            "Technical advisor about security and Cloud service AWS ICE ON IMERI project",
+            "Implement security OWASP 10 refer to iso 27001",
+            "Lead & Manage tim Backend & Frontend in Travel Pass Project",
+            "Coordinate with Client and Projek Manager",
+            "Software architect to build Travel Pass web & mobile",
+            "Integration with payment gateway DOKU, Midtrans, Ipaymu",
+            "Integration with UI moodle oauth2, and IDI"
+          ],
+          "techStack": "Laravel, React.JS, Payment Gateway, AWS, Mysql, Redis, OAuth2"
+        }
+      ]
+    },
+    {
+      "id": "emp-1790608430943",
+      "company": "Crocodic",
+      "employmentType": "Freelance",
+      "companyDateRange": "Sep 2021 - Dec 2021",
+      "roles": [
+        {
+          "id": "role-1790608430943",
+          "jobTitle": "Senior Backend Engineer",
+          "dateRange": "",
+          "bullets": [
+            "Developing Rest Full API backend application for Toko Daring LKPP using Lumen and MySQL Database",
+            "Developing RFQ system",
+            "Developing websocket for real time chat and notification",
+            "Developing in Microservices architecture "
+          ],
+          "techStack": "PHP, Lumen, NodeJS, Socket.io, MySQL"
+        }
+      ]
+    },
+    {
+      "id": "emp-1790608718291",
+      "company": "PT Satuu Teknologi Utama",
+      "employmentType": "Freelance",
+      "companyDateRange": "Jan 2021 - Apr 2022",
+      "roles": [
+        {
+          "id": "role-1790608718291",
+          "jobTitle": "Lead Engineer",
+          "dateRange": "",
+          "bullets": [
+            "Develop ERP system with hybrid(online or offline automatically) system mode",
+            " Build with service pattern ",
+            "Setup AWS cloud server",
+            "Setup PWA",
+            "Leading the front end team",
+            "integrate with mobile app for warehouse"
+          ],
+          "techStack": "PHP, Lumen, MySQL, React.JS, React Native"
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": "edu-1",
+      "dateRange": "2016 — 2020",
+      "degree": "Bachelor of Computer Science (S.Kom)",
+      "institution": "Universitas Negeri Semarang",
+      "details": "Focus on Software Engineering, Web Technologies & Distributed Systems. GPA 3.6/4.00"
+    },
+    {
+      "id": "edu-1790609231041",
+      "dateRange": "2016 - 2016",
+      "degree": "Short Course",
+      "institution": "Hiroshima University",
+      "details": ""
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj-1790614391050",
+      "dateRange": "2026",
+      "projectName": "Sobat Saham",
+      "role": "Full Stack Developer",
+      "description": "Quantitative analytics platform for the Indonesia Stock Exchange (IDX), providing retail investors with disciplined valuation screeners, technical signals, and portfolio tracking.",
+      "projectUrl": "https://www.sobatsaham.com/"
+    },
+    {
+      "id": "proj-1",
+      "dateRange": "2026",
+      "projectName": "AMB Megatrend",
+      "role": "Engineering Lead",
+      "description": "Liquidity provider and institutional administration dashboard built for precision financial operations, position risk assessment, and high-frequency reporting.",
+      "projectUrl": "https://ambmegatrend.com/"
+    },
+    {
+      "id": "proj-1790614150595",
+      "dateRange": "2025",
+      "projectName": "Alzubara",
+      "role": "Full Stack Developer",
+      "description": "Verified international career placement platform connecting Indonesian skilled professionals with certified, legal employment opportunities across the Middle East and globally.",
+      "projectUrl": "https://www.alzubara.co.id/"
+    },
+    {
+      "id": "proj-1790614019218",
+      "dateRange": "2023",
+      "projectName": "M2 (Valutrades)",
+      "role": "Engineering Lead",
+      "description": "High-performance portal and trading interface for global forex, indices, and commodities trading prioritizing strict execution speed, data transparency, and security.",
+      "projectUrl": "https://www.valutrades.com/"
+    },
+    {
+      "id": "proj-1790614044185",
+      "dateRange": "2022",
+      "projectName": "MIFX",
+      "role": "Engineering Lead",
+      "description": "Forex and commodity trading web applications featuring low-latency market order execution, real-time WebSocket notifications, and event-driven architecture with RabbitMQ.",
+      "projectUrl": "https://mifx.com/"
+    },
+    {
+      "id": "proj-1790614079640",
+      "dateRange": "2021",
+      "projectName": "ERP Khasanahsari",
+      "role": "Lead Engineer",
+      "description": "End-to-end Enterprise Resource Planning platform tailored for bakery production, raw material forecasting, batch tracking, outlet logistics, and automated ledger balancing.",
+      "projectUrl": "https://erpkhasanahsari.com/"
+    },
+    {
+      "id": "proj-1790614121325",
+      "dateRange": "2020",
+      "projectName": "EMOP",
+      "role": "Lead Engineer",
+      "description": "Integrated medical membership portals for the Indonesian Society of Obstetrics and Gynecology, managing professional accreditation, clinical education records, and digital congress events.",
+      "projectUrl": "https://emop.pogi.or.id/"
+    },
+    {
+      "id": "proj-1790614141410",
+      "dateRange": "2020",
+      "projectName": "ONEPOGI",
+      "role": "Lead Engineer",
+      "description": "ONEPOGI is a unified membership contribution program that provides POGI members with eight key benefits, supported by POGI’s Electronic Management Office (EMOP-POGI). The program was initiated by the POGI Central Board.",
+      "projectUrl": "https://one.pogi.or.id/"
+    },
+    {
+      "id": "proj-1790614313295",
+      "dateRange": "2020",
+      "projectName": "QuickMath",
+      "role": "Full Stack Developer",
+      "description": "Online learning and automated tutoring platform featuring step-by-step mathematical reasoning, tutor booking consultation flows, and interactive problem solving.",
+      "projectUrl": "https://quickmath.id/"
+    },
+    {
+      "id": "proj-1790614060697",
+      "dateRange": "2018",
+      "projectName": "Sampoerna Retail Community (SRC)",
+      "role": "Technical Lead",
+      "description": "A comprehensive ecosystem of 7 interconnected web and mobile platforms modernizing Indonesia's traditional grocery and retail community. Engineered with a scalable microservices backbone on AWS, enabling high-volume transactions, inventory coordination, order fulfilment, and store analytics.",
+      "projectUrl": "https://www.src.id/"
+    }
+  ],
+  "certifications": [
+    {
+      "id": "cert-1",
+      "dateRange": "2021",
+      "name": "Cloud Practitioner Essentials (Belajar Dasar AWS Cloud)",
+      "issuer": "Dicoding Indonesia",
+      "credentialId": "ERZR4WR8WZYV",
+      "credentialUrl": "https://www.dicoding.com/certificates/ERZR4WR8WZYV",
+      "details": ""
+    },
+    {
+      "id": "cert-1790613217615",
+      "dateRange": "2023",
+      "name": "Introduction to Data Science",
+      "issuer": "Cisco",
+      "credentialId": "79073da4-ea17-481f-a355-6eb8527ebee7",
+      "credentialUrl": "https://www.credly.com/badges/79073da4-ea17-481f-a355-6eb8527ebee7/linked_in_profile",
+      "details": ""
+    },
+    {
+      "id": "cert-1790613281094",
+      "dateRange": "2022",
+      "name": "Public Speaking Skills: Deliver Great Technology Talks",
+      "issuer": "Udemy",
+      "credentialId": "UC-8d3e130e-55cb-470f-ab9c-d5f3328ab42b",
+      "credentialUrl": "https://www.udemy.com/certificate/UC-8d3e130e-55cb-470f-ab9c-d5f3328ab42b/",
+      "details": ""
+    },
+    {
+      "id": "cert-1790613308205",
+      "dateRange": "2022",
+      "name": "Menjadi Google Cloud Engineer",
+      "issuer": "Dicoding Indonesia",
+      "credentialId": "0LZ01R2QQP65",
+      "credentialUrl": "https://www.dicoding.com/certificates/0LZ01R2QQP65",
+      "details": ""
+    },
+    {
+      "id": "cert-1790613344129",
+      "dateRange": "2022",
+      "name": "Belajar Jaringan Komputer untuk Pemula",
+      "issuer": "Dicoding Indonesia",
+      "credentialId": "GRX5L2WYRP0M",
+      "credentialUrl": "https://www.dicoding.com/certificates/GRX5L2WYRP0M",
+      "details": ""
+    },
+    {
+      "id": "cert-1790613367567",
+      "dateRange": "2022",
+      "name": "Belajar Dasar-Dasar DevOps",
+      "issuer": "Dicoding Indonesia",
+      "credentialId": "2VX3165Y4ZYQ",
+      "credentialUrl": "2VX3165Y4ZYQ",
+      "details": ""
+    },
+    {
+      "id": "cert-1790613388469",
+      "dateRange": "2022",
+      "name": "Belajar Dasar Google Cloud",
+      "issuer": "Dicoding Indonesia",
+      "credentialId": "NVP7KOE24ZR0",
+      "credentialUrl": "https://www.dicoding.com/certificates/NVP7KOE24ZR0",
+      "details": ""
+    },
+    {
+      "id": "cert-1790613411606",
+      "dateRange": "2022",
+      "name": "AWS Services for Solutions Architect Associate [2021]",
+      "issuer": "Udemy",
+      "credentialId": "UC-d6bd0959-450d-4370-b721-28be2e3cc795",
+      "credentialUrl": "https://www.udemy.com/certificate/UC-d6bd0959-450d-4370-b721-28be2e3cc795/",
+      "details": ""
+    },
+    {
+      "id": "cert-1790613443234",
+      "dateRange": "2021",
+      "name": "Architecting on AWS (Membangun Arsitektur Cloud di AWS)",
+      "issuer": "Dicoding Indonesia",
+      "credentialId": "1OP8L72L2ZQK",
+      "credentialUrl": "https://www.dicoding.com/certificates/1OP8L72L2ZQK",
+      "details": ""
+    },
+    {
+      "id": "cert-1790613465742",
+      "dateRange": "2021",
+      "name": "Introduction to Information Security",
+      "issuer": "Cyber Academy Indonesia",
+      "credentialId": "PKMI1111210633",
+      "credentialUrl": "https://www.cyberacademy.id/certificate/PKMI1111210633",
+      "details": ""
+    },
+    {
+      "id": "cert-1790613486494",
+      "dateRange": "2021",
+      "name": "Getting started with Microservices with Istio and IBM Cloud Kubernetes Service",
+      "issuer": "IBM",
+      "credentialId": "b3d117c9-e592-48a0-ac8c-49a4a5e02816",
+      "credentialUrl": "https://www.credly.com/badges/b3d117c9-e592-48a0-ac8c-49a4a5e02816?source=linked_in_profile",
+      "details": ""
+    },
+    {
+      "id": "cert-1790613512504",
+      "dateRange": "2021",
+      "name": "API Testing in JavaScript",
+      "issuer": "Test Automation University",
+      "credentialId": "242e848a",
+      "credentialUrl": "https://testautomationu.applitools.com/certificate/?id=242e848a",
+      "details": ""
+    },
+    {
+      "id": "cert-1790613629634",
+      "dateRange": "2021",
+      "name": "ISO 27001 - Network & Communication Security Management",
+      "issuer": "Udemy",
+      "credentialId": "UC-b64bcf50-79ba-4d03-8c49-51cf875c8592",
+      "credentialUrl": "https://www.udemy.com/certificate/UC-b64bcf50-79ba-4d03-8c49-51cf875c8592/",
+      "details": ""
+    },
+    {
+      "id": "cert-1790613656350",
+      "dateRange": "2024",
+      "name": "Oracle Cloud Infrastructure Foundations 2021 Associate",
+      "issuer": "Oracle",
+      "credentialId": "74FC7A2D6EB468B96E1C4D411B3E2D3C01DD76BDADACF099B80DA912370B9440",
+      "credentialUrl": "https://catalog-education.oracle.com/ords/certview/sharebadge?id=74FC7A2D6EB468B96E1C4D411B3E2D3C01DD76BDADACF099B80DA912370B9440",
+      "details": ""
+    },
+    {
+      "id": "cert-1790613682240",
+      "dateRange": "2021",
+      "name": "Software Architecture and Clean Code Design in OOP",
+      "issuer": "Udemy",
+      "credentialId": "UC-05db6418-d664-4c6e-b127-8424283c553c",
+      "credentialUrl": "https://www.udemy.com/certificate/UC-05db6418-d664-4c6e-b127-8424283c553c/",
+      "details": ""
+    },
+    {
+      "id": "cert-1790613750363",
+      "dateRange": "2021",
+      "name": "Pentesting and Securing Web Applications (Ethical Hacking)",
+      "issuer": "Udemy",
+      "credentialId": "UC-185040b9-07c9-4526-9895-3474bbae3099",
+      "credentialUrl": "https://www.udemy.com/certificate/UC-185040b9-07c9-4526-9895-3474bbae3099/",
+      "details": ""
+    },
+    {
+      "id": "cert-1790613774265",
+      "dateRange": "2021",
+      "name": "Introduction to Cybersecurity",
+      "issuer": "Cisco",
+      "credentialId": "3e493bfc-f8e5-4767-ba03-9ad6dd578506",
+      "credentialUrl": "https://www.credly.com/badges/3e493bfc-f8e5-4767-ba03-9ad6dd578506",
+      "details": ""
+    },
+    {
+      "id": "cert-1790613801613",
+      "dateRange": "2021",
+      "name": "Back End Development and APIs",
+      "issuer": "freeCodeCamp",
+      "credentialId": "fcc52f59178-46f6-4ce4-b2c0-7953d242f204",
+      "credentialUrl": "https://www.freecodecamp.org/certification/fcc52f59178-46f6-4ce4-b2c0-7953d242f204/back-end-development-and-apis",
+      "details": ""
+    },
+    {
+      "id": "cert-1790613863643",
+      "dateRange": "2021",
+      "name": "Cloud Practitioner Essentials",
+      "issuer": "Dicoding Indonesia",
+      "credentialId": "ERZR4WR8WZYV",
+      "credentialUrl": "https://www.dicoding.com/certificates/ERZR4WR8WZYV",
+      "details": ""
+    }
+  ],
+  "languages": [
+    {
+      "id": "lang-1",
+      "name": "Indonesian",
+      "proficiency": "Native or Bilingual"
+    },
+    {
+      "id": "lang-2",
+      "name": "English",
+      "proficiency": "Professional Working Proficiency"
+    }
+  ],
+  "settings": {
+    "fontFamily": "EB Garamond",
+    "fontSize": "10pt",
+    "lineHeight": "1.45",
+    "paperMargin": "18mm",
+    "leftColWidth": "25%",
+    "showProjects": true,
+    "showEducation": true,
+    "showCertifications": true,
+    "showLanguages": true,
+    "sectionOrder": [
+      "links",
+      "summary",
+      "skills",
+      "employment",
+      "education",
+      "certifications",
+      "projects",
+      "languages"
+    ]
+  },
+  "_updatedAt": 1790616586761
+}
