@@ -146,7 +146,76 @@ async function buildSampleDocx() {
   // Links
   const linkRuns = [];
   DEFAULT_CV_DATA.links.forEach((l, idx) => {
-    linkRuns.push(new TextRun({ text: l.label, underline: {}, size: 19, font: fontName }));
+    const label = (l.label || '').trim();
+    const url = (l.url || '').trim();
+    const href = url ? (url.startsWith('http://') || url.startsWith('https://') ? url : `https://${url}`) : '';
+
+    if (label && url && label.toLowerCase() !== url.toLowerCase()) {
+      linkRuns.push(
+        new TextRun({
+          text: `${label}: `,
+          bold: true,
+          size: 19,
+          font: fontName,
+          color: "1A1A1A"
+        })
+      );
+      if (href) {
+        linkRuns.push(
+          new ExternalHyperlink({
+            children: [
+              new TextRun({
+                text: url,
+                underline: {},
+                size: 19,
+                font: fontName,
+                color: "0000EE"
+              })
+            ],
+            link: href
+          })
+        );
+      } else {
+        linkRuns.push(
+          new TextRun({
+            text: url,
+            underline: {},
+            size: 19,
+            font: fontName,
+            color: "000000"
+          })
+        );
+      }
+    } else {
+      const displayUrl = url || label;
+      if (href) {
+        linkRuns.push(
+          new ExternalHyperlink({
+            children: [
+              new TextRun({
+                text: displayUrl,
+                underline: {},
+                size: 19,
+                font: fontName,
+                color: "0000EE"
+              })
+            ],
+            link: href
+          })
+        );
+      } else {
+        linkRuns.push(
+          new TextRun({
+            text: displayUrl,
+            underline: {},
+            size: 19,
+            font: fontName,
+            color: "000000"
+          })
+        );
+      }
+    }
+
     if (idx < DEFAULT_CV_DATA.links.length - 1) {
       linkRuns.push(new TextRun({ text: ', ', size: 19, font: fontName }));
     }

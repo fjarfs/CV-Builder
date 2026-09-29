@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
   
   <!-- Application Stylesheet -->
-  <link rel="stylesheet" href="assets/css/style.css?v=2.5">
+  <link rel="stylesheet" href="assets/css/style.css?v=2.7">
   
   <!-- Export Libraries (Local with CDN Fallback) -->
   <script src="assets/libs/docx.umd.js"></script>
@@ -280,14 +280,30 @@
             </svg>
           </div>
           <div class="accordion-body">
-            <div class="form-hint" style="margin-bottom: 6px;">
-              Keahlian ditampilkan rapi dalam 2 kolom sejajar sesuai desain ATS.
+            <div class="form-hint" style="margin-bottom: 8px;">
+              Keahlian ditampilkan rapi dalam 2 kolom sejajar sesuai format ATS. Geser (drag & drop) atau gunakan tombol panah untuk mengatur urutan dan memindahkan skill antar kolom.
+            </div>
+            <div class="skills-toolbar">
+              <button type="button" id="btn-sort-skills-az" class="btn-skill-tool" title="Urutkan semua keahlian secara alfabetis A-Z dan bagi rata">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5h10M11 9h7M11 13h4M3 17l3 3 3-3M6 18V4"/></svg>
+                Urutkan A-Z (Semua)
+              </button>
+              <button type="button" id="btn-balance-skills" class="btn-skill-tool" title="Seimbangkan jumlah keahlian antara kolom kiri dan kanan">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+                Seimbangkan Kolom
+              </button>
             </div>
             <div class="skills-columns-container">
               <!-- Column 1 -->
-              <div class="skills-column-box">
-                <div class="skills-column-title">Kolom Kiri</div>
-                <div class="skill-tags-list" id="skills-col1-list"></div>
+              <div class="skills-column-box" data-col="column1">
+                <div class="skills-column-header-row">
+                  <div class="skills-column-title">Kolom Kiri (<span id="skills-col1-count">0</span>)</div>
+                  <button type="button" class="btn-skill-tool btn-sort-col" id="btn-sort-col1" data-col="column1" title="Urutkan Kolom Kiri A-Z">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5h10M11 9h7M11 13h4M3 17l3 3 3-3M6 18V4"/></svg>
+                    A-Z
+                  </button>
+                </div>
+                <div class="skill-tags-list" id="skills-col1-list" data-col="column1"></div>
                 <div class="skill-add-input-row">
                   <input type="text" id="input-skill-col1" class="form-input" placeholder="Skill baru..." style="padding: 4px 8px; font-size: 0.78rem;">
                   <button type="button" id="btn-add-skill-col1" class="btn btn-secondary btn-sm">+</button>
@@ -295,9 +311,15 @@
               </div>
 
               <!-- Column 2 -->
-              <div class="skills-column-box">
-                <div class="skills-column-title">Kolom Kanan</div>
-                <div class="skill-tags-list" id="skills-col2-list"></div>
+              <div class="skills-column-box" data-col="column2">
+                <div class="skills-column-header-row">
+                  <div class="skills-column-title">Kolom Kanan (<span id="skills-col2-count">0</span>)</div>
+                  <button type="button" class="btn-skill-tool btn-sort-col" id="btn-sort-col2" data-col="column2" title="Urutkan Kolom Kanan A-Z">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5h10M11 9h7M11 13h4M3 17l3 3 3-3M6 18V4"/></svg>
+                    A-Z
+                  </button>
+                </div>
+                <div class="skill-tags-list" id="skills-col2-list" data-col="column2"></div>
                 <div class="skill-add-input-row">
                   <input type="text" id="input-skill-col2" class="form-input" placeholder="Skill baru..." style="padding: 4px 8px; font-size: 0.78rem;">
                   <button type="button" id="btn-add-skill-col2" class="btn btn-secondary btn-sm">+</button>
@@ -624,9 +646,9 @@
 
   <!-- Application Logic Modules -->
   <script src="js/data.js?v=2.7"></script>
-  <script src="js/docx-export.js?v=2.7"></script>
+  <script src="js/docx-export.js?v=2.8"></script>
   <script src="js/pdf-export.js?v=2.7"></script>
-  <script src="js/app.js?v=2.7"></script>
+  <script src="js/app.js?v=3.0"></script>
 
   <!-- Toast Notification Container -->
   <div id="toast-container" class="toast-container" aria-live="polite"></div>

@@ -156,15 +156,76 @@ window.CVWordExporter = {
     if (cvData.links && cvData.links.length > 0) {
       const linkRuns = [];
       cvData.links.forEach((link, idx) => {
-        linkRuns.push(
-          new TextRun({
-            text: link.label || link.url,
-            underline: {},
-            size: 19,
-            font: fontName,
-            color: "000000"
-          })
-        );
+        const label = (link.label || '').trim();
+        const url = (link.url || '').trim();
+        const href = url ? (url.startsWith('http://') || url.startsWith('https://') ? url : `https://${url}`) : '';
+
+        if (label && url && label.toLowerCase() !== url.toLowerCase()) {
+          linkRuns.push(
+            new TextRun({
+              text: `${label}: `,
+              bold: true,
+              size: 19,
+              font: fontName,
+              color: "1A1A1A"
+            })
+          );
+          if (href) {
+            linkRuns.push(
+              new ExternalHyperlink({
+                children: [
+                  new TextRun({
+                    text: url,
+                    underline: {},
+                    size: 19,
+                    font: fontName,
+                    color: "0000EE"
+                  })
+                ],
+                link: href
+              })
+            );
+          } else {
+            linkRuns.push(
+              new TextRun({
+                text: url,
+                underline: {},
+                size: 19,
+                font: fontName,
+                color: "000000"
+              })
+            );
+          }
+        } else {
+          const displayUrl = url || label;
+          if (href) {
+            linkRuns.push(
+              new ExternalHyperlink({
+                children: [
+                  new TextRun({
+                    text: displayUrl,
+                    underline: {},
+                    size: 19,
+                    font: fontName,
+                    color: "0000EE"
+                  })
+                ],
+                link: href
+              })
+            );
+          } else {
+            linkRuns.push(
+              new TextRun({
+                text: displayUrl,
+                underline: {},
+                size: 19,
+                font: fontName,
+                color: "000000"
+              })
+            );
+          }
+        }
+
         if (idx < cvData.links.length - 1) {
           linkRuns.push(new TextRun({ text: ", ", size: 19, font: fontName }));
         }

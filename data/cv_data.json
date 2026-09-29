@@ -1,7 +1,7 @@
 {
   "personal": {
     "fullName": "Fajar Sujito",
-    "jobTitle": "Engineering Leader - Full Stack Developer",
+    "jobTitle": "Engineering Leader | Full Stack Developer",
     "location": "Jakarta, Indonesia",
     "phone": "+6281903492372",
     "email": "fjarfs@gmail.com"
@@ -20,29 +20,35 @@
       "url": "https://github.com/fjarfs"
     }
   ],
-  "summary": "Full-Stack Developer with 10+ years of experience building and maintaining web applications across frontend, backend, and cloud infrastructure.\n\nI work with React, Next.js, TypeScript, Laravel, Node.js, Go, and AWS. My experience includes building responsive interfaces, admin dashboards, API integrations, backend services, automation, and maintaining production systems.\n\nI also actively use AI-assisted development tools such as Claude Code, OpenAI Codex, Cursor, and other modern AI tools to improve development speed, explore solutions, automate repetitive tasks, and accelerate software delivery. In recent roles, I have led engineering direction, mentored developers, and coordinated cross-functional delivery across product, design, and backend teams. I combine technical execution with leadership to ship dependable products and improve long-term team velocity.",
+  "summary": "Engineering leader with 8+ years building and scaling backend platforms for fintech and trading. Led teams of up to 15 engineers across backend, DevOps, and QA, and migrated production to AWS with 99% uptime. Designed a failover gateway for high-frequency trading and an event-driven architecture (RabbitMQ, CQRS, SAGA). Experienced in BCP, and driving AI-assisted development adoption across engineering teams.",
   "skills": {
     "column1": [
-      "React",
-      "Next.js",
-      "Go",
-      "MySQL",
+      "System Design",
+      "Distributed Systems",
+      "Event-driven",
+      "Observability",
+      "Team Building",
+      "High Availability",
+      "AI Assisted Development",
+      "AWS",
       "Microservices",
+      "Rest API, FIX API",
       "Cloudflare",
-      "RabbitMQ",
-      "REST API",
-      "Tailwind CSS"
+      "Go"
     ],
     "column2": [
-      "TypeScript",
       "Node.js",
-      "Laravel",
-      "Redis",
-      "AWS",
       "ELK",
+      "Redis",
+      "RabbitMQ",
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Tailwind CSS",
       "Vercel",
       "React Native",
-      "AI Assisted Development"
+      "MySQL, PostgreSQL",
+      "Laravel"
     ]
   },
   "employment": [
@@ -131,7 +137,6 @@
           "jobTitle": "Technical Lead",
           "dateRange": "May 2022 - Dec 2022",
           "bullets": [
-            "AMB Megatrend is an FX and commodities investment fund founded with minimum amount for investment is US$ 100.000",
             "Architect microservices infrastructure for AMB Megatrend project on AWS (API Gateway, NLB, ECS, AURORA, ELK, Redis, Docker)",
             "Architect & implement Elasticsearch LogStash and Kibana",
             "Initiate using event-driven microservices architecture,  saga patterns, CQRS patterns, messages broker (RabbitMQ), AWS Api Gateway, service and repository pattern, Socket IO for realtime notification, code standardization, Microservices patterns, and unit tests for AMB, MIFX, and Value Trade projects",
@@ -199,7 +204,7 @@
             "Integrated OTP messaging and Gojek services",
             "Monitored server performance and application errors using New Relic and Flare",
             "Troubleshot production issues, application load, and third-party integrations",
-            "Collaborated with Project Managers, Frontend, and QA teams to ensure smooth deliver"
+            "Collaborated with Project Managers, Frontend, and QA teams to ensure smooth delivery"
           ],
           "techStack": "PHP, Laravel, React.js, React Native, AngularJS, MySQL, RDS, DynamoDB, Redis, AWS, ECS, EC2, Docker, Jenkins, Nginx, Firebase, New Relic, SonarQube, Git, Jira"
         }
@@ -239,8 +244,8 @@
             "Architect & implement infrastructure EMOP project",
             "Technical advisor about security and Cloud service AWS ICE ON IMERI project",
             "Implement security OWASP 10 refer to iso 27001",
-            "Lead & Manage tim Backend & Frontend in Travel Pass Project",
-            "Coordinate with Client and Projek Manager",
+            "Lead & Manage Backend & Frontend team in Travel Pass Project",
+            "Coordinate with Client and Project Manager",
             "Software architect to build Travel Pass web & mobile",
             "Integration with payment gateway DOKU, Midtrans, Ipaymu",
             "Integration with UI moodle oauth2, and IDI"
@@ -392,66 +397,12 @@
   ],
   "certifications": [
     {
-      "id": "cert-1",
-      "dateRange": "2021",
-      "name": "Cloud Practitioner Essentials (Belajar Dasar AWS Cloud)",
-      "issuer": "Dicoding Indonesia",
-      "credentialId": "ERZR4WR8WZYV",
-      "credentialUrl": "https://www.dicoding.com/certificates/ERZR4WR8WZYV",
-      "details": ""
-    },
-    {
-      "id": "cert-1790613217615",
-      "dateRange": "2023",
-      "name": "Introduction to Data Science",
-      "issuer": "Cisco",
-      "credentialId": "79073da4-ea17-481f-a355-6eb8527ebee7",
-      "credentialUrl": "https://www.credly.com/badges/79073da4-ea17-481f-a355-6eb8527ebee7/linked_in_profile",
-      "details": ""
-    },
-    {
-      "id": "cert-1790613281094",
-      "dateRange": "2022",
-      "name": "Public Speaking Skills: Deliver Great Technology Talks",
-      "issuer": "Udemy",
-      "credentialId": "UC-8d3e130e-55cb-470f-ab9c-d5f3328ab42b",
-      "credentialUrl": "https://www.udemy.com/certificate/UC-8d3e130e-55cb-470f-ab9c-d5f3328ab42b/",
-      "details": ""
-    },
-    {
       "id": "cert-1790613308205",
       "dateRange": "2022",
       "name": "Menjadi Google Cloud Engineer",
       "issuer": "Dicoding Indonesia",
       "credentialId": "0LZ01R2QQP65",
       "credentialUrl": "https://www.dicoding.com/certificates/0LZ01R2QQP65",
-      "details": ""
-    },
-    {
-      "id": "cert-1790613344129",
-      "dateRange": "2022",
-      "name": "Belajar Jaringan Komputer untuk Pemula",
-      "issuer": "Dicoding Indonesia",
-      "credentialId": "GRX5L2WYRP0M",
-      "credentialUrl": "https://www.dicoding.com/certificates/GRX5L2WYRP0M",
-      "details": ""
-    },
-    {
-      "id": "cert-1790613367567",
-      "dateRange": "2022",
-      "name": "Belajar Dasar-Dasar DevOps",
-      "issuer": "Dicoding Indonesia",
-      "credentialId": "2VX3165Y4ZYQ",
-      "credentialUrl": "2VX3165Y4ZYQ",
-      "details": ""
-    },
-    {
-      "id": "cert-1790613388469",
-      "dateRange": "2022",
-      "name": "Belajar Dasar Google Cloud",
-      "issuer": "Dicoding Indonesia",
-      "credentialId": "NVP7KOE24ZR0",
-      "credentialUrl": "https://www.dicoding.com/certificates/NVP7KOE24ZR0",
       "details": ""
     },
     {
@@ -473,30 +424,12 @@
       "details": ""
     },
     {
-      "id": "cert-1790613465742",
-      "dateRange": "2021",
-      "name": "Introduction to Information Security",
-      "issuer": "Cyber Academy Indonesia",
-      "credentialId": "PKMI1111210633",
-      "credentialUrl": "https://www.cyberacademy.id/certificate/PKMI1111210633",
-      "details": ""
-    },
-    {
       "id": "cert-1790613486494",
       "dateRange": "2021",
       "name": "Getting started with Microservices with Istio and IBM Cloud Kubernetes Service",
       "issuer": "IBM",
       "credentialId": "b3d117c9-e592-48a0-ac8c-49a4a5e02816",
       "credentialUrl": "https://www.credly.com/badges/b3d117c9-e592-48a0-ac8c-49a4a5e02816?source=linked_in_profile",
-      "details": ""
-    },
-    {
-      "id": "cert-1790613512504",
-      "dateRange": "2021",
-      "name": "API Testing in JavaScript",
-      "issuer": "Test Automation University",
-      "credentialId": "242e848a",
-      "credentialUrl": "https://testautomationu.applitools.com/certificate/?id=242e848a",
       "details": ""
     },
     {
@@ -536,30 +469,12 @@
       "details": ""
     },
     {
-      "id": "cert-1790613774265",
-      "dateRange": "2021",
-      "name": "Introduction to Cybersecurity",
-      "issuer": "Cisco",
-      "credentialId": "3e493bfc-f8e5-4767-ba03-9ad6dd578506",
-      "credentialUrl": "https://www.credly.com/badges/3e493bfc-f8e5-4767-ba03-9ad6dd578506",
-      "details": ""
-    },
-    {
       "id": "cert-1790613801613",
       "dateRange": "2021",
       "name": "Back End Development and APIs",
       "issuer": "freeCodeCamp",
       "credentialId": "fcc52f59178-46f6-4ce4-b2c0-7953d242f204",
       "credentialUrl": "https://www.freecodecamp.org/certification/fcc52f59178-46f6-4ce4-b2c0-7953d242f204/back-end-development-and-apis",
-      "details": ""
-    },
-    {
-      "id": "cert-1790613863643",
-      "dateRange": "2021",
-      "name": "Cloud Practitioner Essentials",
-      "issuer": "Dicoding Indonesia",
-      "credentialId": "ERZR4WR8WZYV",
-      "credentialUrl": "https://www.dicoding.com/certificates/ERZR4WR8WZYV",
       "details": ""
     }
   ],
@@ -596,5 +511,5 @@
       "languages"
     ]
   },
-  "_updatedAt": 1790616586761
+  "_updatedAt": 1790699095823
 }

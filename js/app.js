@@ -542,46 +542,235 @@
   }
 
   // ==========================================================================
-  // Skills Form Renderer
   // ==========================================================================
+  // Skills Form Renderer & Reordering
+  // ==========================================================================
+  let draggedSkillInfo = null;
+
   function renderSkillsForm() {
     const col1List = document.getElementById('skills-col1-list');
     const col2List = document.getElementById('skills-col2-list');
+    const col1Count = document.getElementById('skills-col1-count');
+    const col2Count = document.getElementById('skills-col2-count');
+
+    if (!col1List || !col2List) return;
+
+    if (!Array.isArray(cvData.skills.column1)) cvData.skills.column1 = [];
+    if (!Array.isArray(cvData.skills.column2)) cvData.skills.column2 = [];
 
     col1List.innerHTML = '';
     col2List.innerHTML = '';
 
-    (cvData.skills.column1 || []).forEach((skill, idx) => {
-      col1List.appendChild(createSkillTag(skill, () => {
-        cvData.skills.column1.splice(idx, 1);
-        renderSkillsForm();
-        triggerSave();
-      }));
+    if (col1Count) col1Count.textContent = String(cvData.skills.column1.length);
+    if (col2Count) col2Count.textContent = String(cvData.skills.column2.length);
+
+    // Populate Column 1
+    cvData.skills.column1.forEach((skill, idx) => {
+      col1List.appendChild(createSkillTag(skill, 'column1', idx, cvData.skills.column1.length));
     });
 
-    (cvData.skills.column2 || []).forEach((skill, idx) => {
-      col2List.appendChild(createSkillTag(skill, () => {
-        cvData.skills.column2.splice(idx, 1);
-        renderSkillsForm();
-        triggerSave();
-      }));
+    // Populate Column 2
+    cvData.skills.column2.forEach((skill, idx) => {
+      col2List.appendChild(createSkillTag(skill, 'column2', idx, cvData.skills.column2.length));
     });
+
+    // Setup list-level drop targets (for dropping onto empty area of list)
+    setupSkillsListDropZone(col1List, 'column1');
+    setupSkillsListDropZone(col2List, 'column2');
   }
 
-  function createSkillTag(text, onRemove) {
+  function createSkillTag(text, colKey, idx, totalInCol) {
     const tag = document.createElement('div');
     tag.className = 'skill-tag';
+    tag.setAttribute('draggable', 'true');
+    tag.dataset.col = colKey;
+    tag.dataset.index = idx;
+
+    const otherColKey = colKey === 'column1' ? 'column2' : 'column1';
+    const otherColLabel = colKey === 'column1' ? 'Pindah ke Kolom Kanan' : 'Pindah ke Kolom Kiri';
+
     tag.innerHTML = `
-      <span>${escapeHtml(text)}</span>
-      <button type="button" aria-label="Hapus skill">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
+      <div class="skill-tag-left">
+        <span class="skill-drag-handle" title="Tahan dan geser untuk memindahkan urutan">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="9" cy="5" r="1.5"></circle>
+            <circle cx="9" cy="12" r="1.5"></circle>
+            <circle cx="9" cy="19" r="1.5"></circle>
+            <circle cx="15" cy="5" r="1.5"></circle>
+            <circle cx="15" cy="12" r="1.5"></circle>
+            <circle cx="15" cy="19" r="1.5"></circle>
+          </svg>
+        </span>
+        <span class="skill-tag-text" title="${escapeHtml(text)}">${escapeHtml(text)}</span>
+      </div>
+      <div class="skill-tag-actions">
+        <button type="button" class="btn-skill-action btn-skill-up" title="Geser ke Atas" ${idx === 0 ? 'disabled' : ''}>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="18 15 12 9 6 15"></polyline>
+          </svg>
+        </button>
+        <button type="button" class="btn-skill-action btn-skill-down" title="Geser ke Bawah" ${idx === totalInCol - 1 ? 'disabled' : ''}>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <button type="button" class="btn-skill-action btn-skill-switch" title="${otherColLabel}">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="17 1 21 5 17 9"></polyline>
+            <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+            <polyline points="7 23 3 19 7 15"></polyline>
+            <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+          </svg>
+        </button>
+        <button type="button" class="btn-skill-action btn-skill-delete" title="Hapus keahlian">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
     `;
-    tag.querySelector('button').onclick = onRemove;
+
+    // 1. Action Buttons
+    tag.querySelector('.btn-skill-up').onclick = (e) => {
+      e.stopPropagation();
+      if (idx > 0) {
+        const arr = cvData.skills[colKey];
+        const temp = arr[idx];
+        arr[idx] = arr[idx - 1];
+        arr[idx - 1] = temp;
+        renderSkillsForm();
+        triggerSave();
+      }
+    };
+
+    tag.querySelector('.btn-skill-down').onclick = (e) => {
+      e.stopPropagation();
+      const arr = cvData.skills[colKey];
+      if (idx < arr.length - 1) {
+        const temp = arr[idx];
+        arr[idx] = arr[idx + 1];
+        arr[idx + 1] = temp;
+        renderSkillsForm();
+        triggerSave();
+      }
+    };
+
+    tag.querySelector('.btn-skill-switch').onclick = (e) => {
+      e.stopPropagation();
+      const fromArr = cvData.skills[colKey];
+      const toArr = cvData.skills[otherColKey];
+      const item = fromArr.splice(idx, 1)[0];
+      toArr.push(item);
+      renderSkillsForm();
+      triggerSave();
+    };
+
+    tag.querySelector('.btn-skill-delete').onclick = (e) => {
+      e.stopPropagation();
+      cvData.skills[colKey].splice(idx, 1);
+      renderSkillsForm();
+      triggerSave();
+    };
+
+    // 2. Drag & Drop Event Handlers
+    tag.addEventListener('dragstart', (e) => {
+      draggedSkillInfo = { col: colKey, index: idx, text: text };
+      tag.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/plain', JSON.stringify(draggedSkillInfo));
+    });
+
+    tag.addEventListener('dragend', () => {
+      tag.classList.remove('dragging');
+      document.querySelectorAll('.skill-tag').forEach(el => el.classList.remove('drag-over-item'));
+      document.querySelectorAll('.skill-tags-list').forEach(el => el.classList.remove('drag-over-list'));
+      draggedSkillInfo = null;
+    });
+
+    tag.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      e.dataTransfer.dropEffect = 'move';
+      tag.classList.add('drag-over-item');
+    });
+
+    tag.addEventListener('dragleave', () => {
+      tag.classList.remove('drag-over-item');
+    });
+
+    tag.addEventListener('drop', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      tag.classList.remove('drag-over-item');
+
+      if (!draggedSkillInfo) return;
+
+      const fromCol = draggedSkillInfo.col;
+      const fromIdx = draggedSkillInfo.index;
+      const targetCol = colKey;
+      const targetIdx = idx;
+
+      if (fromCol === targetCol) {
+        if (fromIdx !== targetIdx) {
+          const arr = cvData.skills[targetCol];
+          const moved = arr.splice(fromIdx, 1)[0];
+          arr.splice(targetIdx, 0, moved);
+          renderSkillsForm();
+          triggerSave();
+        }
+      } else {
+        const fromArr = cvData.skills[fromCol];
+        const targetArr = cvData.skills[targetCol];
+        const moved = fromArr.splice(fromIdx, 1)[0];
+        targetArr.splice(targetIdx, 0, moved);
+        renderSkillsForm();
+        triggerSave();
+      }
+      draggedSkillInfo = null;
+    });
+
     return tag;
+  }
+
+  function setupSkillsListDropZone(listEl, colKey) {
+    listEl.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      listEl.classList.add('drag-over-list');
+    });
+
+    listEl.addEventListener('dragleave', (e) => {
+      if (!listEl.contains(e.relatedTarget)) {
+        listEl.classList.remove('drag-over-list');
+      }
+    });
+
+    listEl.addEventListener('drop', (e) => {
+      e.preventDefault();
+      listEl.classList.remove('drag-over-list');
+
+      // Only handle if dropped directly on the container (not handled by child tag)
+      if (draggedSkillInfo && e.target === listEl) {
+        const fromCol = draggedSkillInfo.col;
+        const fromIdx = draggedSkillInfo.index;
+        const targetCol = colKey;
+
+        if (fromCol === targetCol) {
+          const arr = cvData.skills[targetCol];
+          const moved = arr.splice(fromIdx, 1)[0];
+          arr.push(moved);
+        } else {
+          const fromArr = cvData.skills[fromCol];
+          const targetArr = cvData.skills[targetCol];
+          const moved = fromArr.splice(fromIdx, 1)[0];
+          targetArr.push(moved);
+        }
+        draggedSkillInfo = null;
+        renderSkillsForm();
+        triggerSave();
+      }
+    });
   }
 
   function setupSkillsAddInput() {
@@ -612,11 +801,59 @@
       }
     };
 
-    btn1.onclick = addCol1;
-    input1.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addCol1(); } });
+    if (btn1) btn1.onclick = addCol1;
+    if (input1) input1.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addCol1(); } });
 
-    btn2.onclick = addCol2;
-    input2.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addCol2(); } });
+    if (btn2) btn2.onclick = addCol2;
+    if (input2) input2.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addCol2(); } });
+
+    // Sort buttons
+    const btnSortCol1 = document.getElementById('btn-sort-col1');
+    if (btnSortCol1) {
+      btnSortCol1.onclick = () => {
+        if (Array.isArray(cvData.skills.column1)) {
+          cvData.skills.column1.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
+          renderSkillsForm();
+          triggerSave();
+        }
+      };
+    }
+
+    const btnSortCol2 = document.getElementById('btn-sort-col2');
+    if (btnSortCol2) {
+      btnSortCol2.onclick = () => {
+        if (Array.isArray(cvData.skills.column2)) {
+          cvData.skills.column2.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
+          renderSkillsForm();
+          triggerSave();
+        }
+      };
+    }
+
+    const btnSortAll = document.getElementById('btn-sort-skills-az');
+    if (btnSortAll) {
+      btnSortAll.onclick = () => {
+        const all = [...(cvData.skills.column1 || []), ...(cvData.skills.column2 || [])]
+          .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
+        const mid = Math.ceil(all.length / 2);
+        cvData.skills.column1 = all.slice(0, mid);
+        cvData.skills.column2 = all.slice(mid);
+        renderSkillsForm();
+        triggerSave();
+      };
+    }
+
+    const btnBalance = document.getElementById('btn-balance-skills');
+    if (btnBalance) {
+      btnBalance.onclick = () => {
+        const all = [...(cvData.skills.column1 || []), ...(cvData.skills.column2 || [])];
+        const mid = Math.ceil(all.length / 2);
+        cvData.skills.column1 = all.slice(0, mid);
+        cvData.skills.column2 = all.slice(mid);
+        renderSkillsForm();
+        triggerSave();
+      };
+    }
   }
 
   // ==========================================================================
@@ -1497,6 +1734,9 @@
     }
 
     function advanceToNewPage() {
+      if (currentContent && currentContent.children.length === 0) {
+        return currentPage;
+      }
       currentPage = makePage();
       currentContent = currentPage.querySelector('.cv-page-content');
       return currentPage;
@@ -1530,7 +1770,18 @@
         if (!cvData.links || cvData.links.length === 0) return;
         const linksHtml = cvData.links.map((link, idx) => {
           const isLast = idx === cvData.links.length - 1;
-          return `<a class="cv-link-item" href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.label || link.url)}</a>${!isLast ? '<span class="cv-link-separator">,</span>' : ''}`;
+          const label = (link.label || '').trim();
+          const url = (link.url || '').trim();
+
+          let contentHtml = '';
+          if (label && url && label.toLowerCase() !== url.toLowerCase()) {
+            contentHtml = `<span class="cv-link-label">${escapeHtml(label)}:</span> <span class="cv-link-url">${escapeHtml(url)}</span>`;
+          } else {
+            contentHtml = `<span class="cv-link-url">${escapeHtml(url || label)}</span>`;
+          }
+
+          const href = url ? (url.startsWith('http://') || url.startsWith('https://') ? url : `https://${url}`) : '#';
+          return `<a class="cv-link-item" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">${contentHtml}</a>${!isLast ? '<span class="cv-link-separator">,</span>' : ''}`;
         }).join(' ');
 
         const sec = document.createElement('section');
@@ -1575,6 +1826,14 @@
 
         let currentSec = createSummaryShell(false);
         currentContent.appendChild(currentSec);
+
+        if (isPageOverflowing(currentPage) && currentContent.children.length > 1) {
+          currentContent.removeChild(currentSec);
+          advanceToNewPage();
+          currentSec = createSummaryShell(false);
+          currentContent.appendChild(currentSec);
+        }
+
         let target = currentSec.querySelector('.cv-summary-text');
 
         summaryParas.forEach((paraText, pIdx) => {
@@ -1585,11 +1844,12 @@
 
           if (isPageOverflowing(currentPage) && (pIdx > 0 || currentContent.children.length > 1)) {
             target.removeChild(pEl);
-            if (target.children.length === 0) {
+            const hadParasBefore = target.querySelectorAll('.cv-summary-para').length > 0;
+            if (!hadParasBefore) {
               currentContent.removeChild(currentSec);
             }
             advanceToNewPage();
-            currentSec = createSummaryShell(true);
+            currentSec = createSummaryShell(hadParasBefore);
             currentContent.appendChild(currentSec);
             target = currentSec.querySelector('.cv-summary-text');
             target.appendChild(pEl);
@@ -1693,7 +1953,7 @@
               currentContent.removeChild(currentSec);
             }
             advanceToNewPage();
-            currentSec = createEmploymentShell(true);
+            currentSec = createEmploymentShell(totalRolesPlaced > 0);
             currentContent.appendChild(currentSec);
             currentCompanyGroup = createCompanyGroup(false);
             currentSec.appendChild(currentCompanyGroup);
@@ -1733,7 +1993,7 @@
               }
 
               advanceToNewPage();
-              currentSec = createEmploymentShell(true);
+              currentSec = createEmploymentShell(totalRolesPlaced > 0);
               currentContent.appendChild(currentSec);
               currentCompanyGroup = createCompanyGroup(rolesPlacedForThisCompany > 0);
               currentSec.appendChild(currentCompanyGroup);
@@ -1764,7 +2024,7 @@
                   }
 
                   advanceToNewPage();
-                  currentSec = createEmploymentShell(true);
+                  currentSec = createEmploymentShell(totalRolesPlaced > 0);
                   currentContent.appendChild(currentSec);
                   currentCompanyGroup = createCompanyGroup(rolesPlacedForThisCompany > 0);
                   currentSec.appendChild(currentCompanyGroup);
@@ -1875,6 +2135,14 @@
 
         let currentSec = createEduShell(false);
         currentContent.appendChild(currentSec);
+
+        if (isPageOverflowing(currentPage) && currentContent.children.length > 1) {
+          currentContent.removeChild(currentSec);
+          advanceToNewPage();
+          currentSec = createEduShell(false);
+          currentContent.appendChild(currentSec);
+        }
+
         let itemsInSec = 0;
 
         cvData.education.forEach(edu => {
@@ -1897,11 +2165,12 @@
 
           if (isPageOverflowing(currentPage) && (itemsInSec > 0 || currentContent.children.length > 1)) {
             currentSec.removeChild(entry);
-            if (currentSec.querySelectorAll('.cv-edu-entry').length === 0) {
+            const hadItemsBefore = currentSec.querySelectorAll('.cv-edu-entry').length > 0;
+            if (!hadItemsBefore) {
               currentContent.removeChild(currentSec);
             }
             advanceToNewPage();
-            currentSec = createEduShell(true);
+            currentSec = createEduShell(hadItemsBefore);
             currentContent.appendChild(currentSec);
             currentSec.appendChild(entry);
             itemsInSec = 0;
@@ -1931,6 +2200,14 @@
 
         let currentSec = createCertShell(false);
         currentContent.appendChild(currentSec);
+
+        if (isPageOverflowing(currentPage) && currentContent.children.length > 1) {
+          currentContent.removeChild(currentSec);
+          advanceToNewPage();
+          currentSec = createCertShell(false);
+          currentContent.appendChild(currentSec);
+        }
+
         let target = currentSec.querySelector('.cv-cert-list');
         let itemsInSec = 0;
 
@@ -1984,11 +2261,12 @@
 
           if (isPageOverflowing(currentPage) && (itemsInSec > 0 || currentContent.children.length > 1)) {
             target.removeChild(item);
-            if (target.children.length === 0) {
+            const hadItemsBefore = target.querySelectorAll('.cv-cert-item').length > 0;
+            if (!hadItemsBefore) {
               currentContent.removeChild(currentSec);
             }
             advanceToNewPage();
-            currentSec = createCertShell(true);
+            currentSec = createCertShell(hadItemsBefore);
             currentContent.appendChild(currentSec);
             target = currentSec.querySelector('.cv-cert-list');
             target.appendChild(item);
@@ -2017,6 +2295,14 @@
 
         let currentSec = createProjShell(false);
         currentContent.appendChild(currentSec);
+
+        if (isPageOverflowing(currentPage) && currentContent.children.length > 1) {
+          currentContent.removeChild(currentSec);
+          advanceToNewPage();
+          currentSec = createProjShell(false);
+          currentContent.appendChild(currentSec);
+        }
+
         let itemsInSec = 0;
 
         cvData.projects.forEach(proj => {
@@ -2049,11 +2335,12 @@
 
           if (isPageOverflowing(currentPage) && (itemsInSec > 0 || currentContent.children.length > 1)) {
             currentSec.removeChild(entry);
-            if (currentSec.querySelectorAll('.cv-proj-entry').length === 0) {
+            const hadItemsBefore = currentSec.querySelectorAll('.cv-proj-entry').length > 0;
+            if (!hadItemsBefore) {
               currentContent.removeChild(currentSec);
             }
             advanceToNewPage();
-            currentSec = createProjShell(true);
+            currentSec = createProjShell(hadItemsBefore);
             currentContent.appendChild(currentSec);
             currentSec.appendChild(entry);
             itemsInSec = 0;

@@ -573,7 +573,35 @@ body {
   padding: 6px 8px;
 }
 
-/* Skills Tag Inputs */
+/* Skills Tag Inputs & Reordering */
+.skills-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.btn-skill-tool {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-secondary);
+  border-radius: 4px;
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.btn-skill-tool:hover {
+  background: rgba(99, 102, 241, 0.18);
+  border-color: rgba(99, 102, 241, 0.4);
+  color: #c7d2fe;
+}
+
 .skills-columns-container {
   display: flex;
   gap: 12px;
@@ -590,43 +618,133 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.skills-column-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .skills-column-title {
   font-size: 0.73rem;
   font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 .skill-tags-list {
   display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  min-height: 40px;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 52px;
+  padding: 4px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  transition: all 0.15s ease;
+}
+
+.skill-tags-list.drag-over-list {
+  background: rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.45);
 }
 
 .skill-tag {
-  background: rgba(99, 102, 241, 0.15);
-  color: #c7d2fe;
-  border: 1px solid rgba(99, 102, 241, 0.3);
-  font-size: 0.74rem;
-  padding: 3px 7px;
-  border-radius: 4px;
-  display: inline-flex;
+  background: rgba(99, 102, 241, 0.12);
+  color: #e0e7ff;
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  font-size: 0.76rem;
+  padding: 4px 7px;
+  border-radius: 5px;
+  display: flex;
   align-items: center;
-  gap: 4px;
+  justify-content: space-between;
+  gap: 6px;
+  user-select: none;
+  cursor: grab;
+  transition: background 0.15s, border-color 0.15s, opacity 0.15s, transform 0.12s;
 }
 
-.skill-tag button {
+.skill-tag:hover {
+  background: rgba(99, 102, 241, 0.22);
+  border-color: rgba(99, 102, 241, 0.45);
+}
+
+.skill-tag.dragging {
+  opacity: 0.35;
+  cursor: grabbing;
+  border-style: dashed;
+}
+
+.skill-tag.drag-over-item {
+  border-top: 2px solid var(--accent-indigo);
+  transform: translateY(1px);
+}
+
+.skill-tag-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  flex: 1;
+}
+
+.skill-drag-handle {
+  color: #6366f1;
+  opacity: 0.55;
+  cursor: grab;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.skill-tag:hover .skill-drag-handle {
+  opacity: 1;
+}
+
+.skill-tag-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+}
+
+.skill-tag-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.btn-skill-action {
   background: transparent;
   border: none;
   color: #a5b4fc;
+  opacity: 0.6;
   cursor: pointer;
-  display: flex;
+  padding: 2px 3px;
+  border-radius: 3px;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: all 0.12s ease;
 }
 
-.skill-tag button:hover {
+.btn-skill-action:hover:not(:disabled) {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.btn-skill-action:disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+
+.btn-skill-action.btn-skill-delete:hover {
   color: var(--accent-rose);
+  background: rgba(239, 68, 68, 0.2);
 }
 
 .skill-add-input-row {
@@ -924,17 +1042,32 @@ body {
 .cv-links-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  align-items: baseline;
+  column-gap: 8px;
+  row-gap: 3px;
+  line-height: var(--cv-line-height);
 }
 
 .cv-link-item {
   color: #000000;
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  text-decoration: none;
   cursor: pointer;
+  display: inline;
 }
 
-.cv-link-item:hover {
+.cv-link-label {
+  font-weight: 700;
+  color: #111827;
+}
+
+.cv-link-url {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  color: #000000;
+  word-break: break-all;
+}
+
+.cv-link-item:hover .cv-link-url {
   color: #2563eb;
 }
 
