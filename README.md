@@ -55,10 +55,19 @@ Open your terminal in the project directory and start the local Python server:
 ```bash
 python3 server.py
 ```
-Then visit in your browser:
+> **Catatan Port:** Jika port 3000 sedang digunakan oleh aplikasi lain, server otomatis berpindah ke port berikutnya yang kosong (misal: 3001, 3002).
+
+Anda juga bisa menentukan custom port secara manual:
+```bash
+# Menentukan custom port langsung
+python3 server.py 3001
+# atau menggunakan flag -p / --port
+python3 server.py -p 8080
+# atau menggunakan environment variable PORT
+PORT=5000 python3 server.py
 ```
-http://localhost:3000
-```
+
+Buka URL yang ditampilkan di terminal (contoh: `http://localhost:3002`) pada browser Anda.
 
 > **Why use `server.py`?**  
 > Running with `server.py` enables direct, automatic real-time saving to `data/cv_data.json` on disk and seamless data synchronization across refreshes. All exports (Word & PDF) are downloaded directly to your local computer via the browser.

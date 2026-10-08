@@ -4,7 +4,7 @@ import json
 import os
 import sys
 
-PORT = 3000
+DEFAULT_PORT = 3000
 DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
 class CVHandler(http.server.SimpleHTTPRequestHandler):
@@ -72,10 +72,55 @@ class CVHandler(http.server.SimpleHTTPRequestHandler):
         else:
             super().do_GET()
 
-if __name__ == '__main__':
-    with http.server.ThreadingHTTPServer(('', PORT), CVHandler) as httpd:
-        print(f"CV Studio server running at http://localhost:{PORT}")
+def start_server():
+    import argparse
+    parser = argparse.ArgumentParser(description="CV Studio Local Development Server")
+    parser.add_argument('port_pos', nargs='?', type=int, default=None, help='Custom port number (e.g. 3001, 8080)')
+    parser.add_argument('-p', '--port', type=int, default=None, help='Custom port number (e.g. -p 3001 or --port 3001)')
+    args = parser.parse_args()
+
+    explicit_port = args.port or args.port_pos
+    if explicit_port is None and 'PORT' in os.environ:
+        try:
+            explicit_port = int(os.environ['PORT'])
+        except ValueError:
+            pass
+
+    target_port = explicit_port if explicit_port is not None else DEFAULT_PORT
+    auto_fallback = (explicit_port is None)
+
+    curr_port = target_port
+    max_tries = 50
+    httpd = None
+
+    for attempt in range(max_tries):
+        try:
+            httpd = http.server.ThreadingHTTPServer(('', curr_port), CVHandler)
+            break
+        except OSError as e:
+            if e.errno == 48 or 'Address already in use' in str(e):
+                if auto_fallback:
+                    print(f"[!] Port {curr_port} sedang digunakan. Mencoba port {curr_port + 1}...")
+                    curr_port += 1
+                    continue
+                else:
+                    print(f"Error: Port {curr_port} sedang digunakan.")
+                    print(f"Gunakan port lain, contoh: python3 server.py {curr_port + 1}")
+                    sys.exit(1)
+            else:
+                raise
+
+    if not httpd:
+        print(f"Error: Tidak dapat menemukan port yang tersedia setelah {max_tries} percobaan.")
+        sys.exit(1)
+
+    with httpd:
+        print(f"✓ CV Studio server running at: http://localhost:{curr_port}")
+        print("Tekan Ctrl+C untuk menghentikan server.\n")
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:
-            pass
+            print("\nServer dihentikan.")
+
+if __name__ == '__main__':
+    start_server()

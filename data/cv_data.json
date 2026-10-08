@@ -1,7 +1,7 @@
 {
   "personal": {
     "fullName": "Fajar Sujito",
-    "jobTitle": "Engineering Leader | Full Stack Developer",
+    "jobTitle": "Engineering Leader | Software Architect | Full Stack Developer ",
     "location": "Jakarta, Indonesia",
     "phone": "+6281903492372",
     "email": "fjarfs@gmail.com"
@@ -12,7 +12,7 @@
       "url": "https://fajarsujito.my.id"
     },
     {
-      "label": "Linkedin",
+      "label": "LinkedIn",
       "url": "https://linkedin.com/in/fajar-sujito"
     },
     {
@@ -20,256 +20,193 @@
       "url": "https://github.com/fjarfs"
     }
   ],
-  "summary": "Engineering leader with 8+ years building and scaling backend platforms for fintech and trading. Led teams of up to 15 engineers across backend, DevOps, and QA, and migrated production to AWS with 99.95% uptime. Designed a failover gateway for high-frequency trading and an event-driven architecture (RabbitMQ, CQRS, SAGA). Experienced in BCP, and driving AI-assisted development adoption across engineering teams.",
+  "summary": "Engineering leader with 8+ years of experience building and scaling backend platforms for fintech, trading, and high throughput digital ecosystems. Led cross functional teams of up to 15 engineers across backend, DevOps, and QA, achieving 99.95% platform uptime on AWS. Architected failover gateways for low latency trading, event driven microservices (RabbitMQ, CQRS, SAGA), and robust BCP frameworks. Proven track record in cloud modernization, security compliance (ISO 27001, OWASP), and accelerating delivery by 30% through AI assisted engineering practices.",
   "skills": {
     "column1": [
-      "System Design",
-      "Distributed Systems",
-      "Event-driven",
-      "Observability",
-      "Team Building",
-      "High Availability",
-      "AI Assisted Development",
-      "AWS",
-      "Microservices",
-      "Rest API, FIX API",
-      "Cloudflare",
-      "Go"
+      "System Design & Distributed Systems",
+      "Event-Driven Architecture (RabbitMQ, CQRS)",
+      "High Availability & BCP Resilience",
+      "AWS (ECS, EKS, Aurora, DynamoDB)",
+      "AI-Assisted Development (Kiro, LLMs)",
+      "Microservices & REST / FIX API",
+      "Go, Node.js, TypeScript"
     ],
     "column2": [
-      "Node.js",
-      "ELK",
-      "Redis",
-      "RabbitMQ",
-      "TypeScript",
-      "React",
-      "Next.js",
-      "Tailwind CSS",
-      "Vercel",
-      "React Native",
-      "MySQL, PostgreSQL",
-      "Laravel"
+      "Kubernetes (EKS), Docker, CI/CD",
+      "MySQL, PostgreSQL, Redis",
+      "Observability & APM (ELK, New Relic)",
+      "OWASP Security & ISO 27001 Controls",
+      "React, Next.js, Tailwind CSS",
+      "Laravel, PHP",
+      "Engineering Leadership & Mentorship"
     ]
   },
   "employment": [
     {
-      "id": "emp-1",
+      "id": "emp-independent",
       "company": "Independent Product Builder",
       "employmentType": "Self-Employed",
-      "companyDateRange": "Jan 2023 — Present",
+      "companyDateRange": "Jan 2023 – Present",
       "roles": [
         {
-          "id": "role-1-1",
-          "jobTitle": "Full Stack Developer",
-          "dateRange": "",
+          "id": "role-indep-1",
+          "jobTitle": "Full Stack Developer & Architect",
+          "dateRange": "Jan 2023 – Present",
           "bullets": [
-            "Independently owned architecture and product implementation for production web applications built with React, Next.js, and TypeScript.",
+            "Designed and built an end to end AI automated engineering workflow covering the full delivery lifecycle: feature planning, architecture, design, task breakdown, implementation, QA automation, code review, deployment, and security scanning, using Claude Code, Cursor, and Kiro, OpenRouter And Antigravity",
+            "Implemented retrieval-augmented generation (RAG) over project specs, architecture decisions, and the codebase, giving AI agents consistent context so generated code follows existing conventions and the component system.",
+            "Automated QA and release gates (test generation, automated code review, dependency and security scanning) in the CI/CD pipeline, shipping features ~60% faster while keeping human review on architecture and security decisions.",
+            "Independently owned architecture and product implementation for production web applications built with React, Next.js, TanStack (Query, Router), and TypeScript, backed by Go, Python, Laravel  and Node.js services.",
             "Led the design of reusable UI patterns and scalable component structures to keep features consistent, maintainable, and fast to ship.",
-            "Improved frontend responsiveness, SEO, accessibility, and user experience through interface refactoring, page optimization, and cleaner interaction flows, achieving Lighthouse scores of 95+ across Performance, Accessibility, Best Practices, and SEO.",
+            "Improved frontend responsiveness, SEO, accessibility, and user experience, achieving Lighthouse scores of 95+ across Performance, Accessibility, Best Practices, and SEO.",
             "Hardened the application with a strict Content Security Policy, HSTS, and a full set of security headers, earning an A+ rating on securityheaders.com.",
-            "Integrated backend APIs for authentication, analytics, payments, and product workflows, ensuring frontend behavior stayed reliable across releases.",
-            "Drove code quality and workflow improvements that made the application easier to extend and support over time."
+            "Integrated backend APIs for authentication, analytics, payments, and product workflows, ensuring frontend behavior stayed reliable across releases."
           ],
-          "techStack": "React, Next.js, Laravel, Go, TypeScript, Tailwind CSS, REST API, AWS, Sentry, PostDog, Cloudflare, Vercel"
+          "techStack": "React, Next.js, TypeScript, Go, Laravel, AWS, Cloudflare, PostgreSQL, Python, Posthog, Sentry"
         }
       ]
     },
     {
-      "id": "emp-1790591559521",
+      "id": "emp-sam",
       "company": "PT Surya Anugrah Mulya",
       "employmentType": "Full-time",
-      "companyDateRange": "Jan 2024 - Aug 2026",
+      "companyDateRange": "Jan 2024 – Aug 2026",
       "roles": [
         {
-          "id": "role-1790591559521",
-          "jobTitle": "Engneering Lead",
-          "dateRange": "Nov 2024 — Aug 2026",
+          "id": "role-sam-1",
+          "jobTitle": "Head of Backend Engineer",
+          "dateRange": "Nov 2024 – Aug 2026",
           "bullets": [
-            "Architected a failover gateway for high frequency trading operations, ensuring business continuity with under 30 second recovery time and 99.95% uptime during market hours.",
-            "Led the production migration to AWS, raising uptime from 99.5% to 99.95% and cutting incident detection time by 60% through ELK based observability.",
-            "Built and led a 12 person cross functional team, reducing release cycle time from 2 weeks to 3 days while mentoring engineers and strengthening engineering discipline.",
-            "Introduced AI assisted development practices across the team, improving delivery speed by 30% and automating code review, unit test generation, and boilerplate scaffolding using Kiro and OpenRouter",
-            "Initiated and implemented AI assisted development practices across the engineering team to accelerate development, automate repetitive tasks, and improve delivery efficiency using modern AI coding tools.",
-            "Established the BCP framework and monitoring standards across 15 critical systems",
-            "Drove cross department process automation with IT, Product, Corporate Strategy, and Operations, saving ~80 hours per month of manual reporting while securing data flow."
+            "Architected a failover gateway for high-frequency trading operations, guaranteeing business continuity with sub-30-second recovery and 99.95% uptime during market hours.",
+            "Led production cloud migration to AWS, raising platform uptime to 99.95% and cutting incident detection time by 60% through ELK-based observability.",
+            "Built and led a 12-engineer cross-functional engineering team, cutting release cycle time from 2 weeks to 3 days while instituting automated testing and code quality standards.",
+            "Introduced AI-assisted development practices using Kiro and OpenRouter, improving sprint delivery speed by 30% and automating code reviews, unit test generation, and boilerplate scaffolding.",
+            "Established enterprise BCP frameworks and automated operational reporting across 15 mission-critical systems, saving ~80 hours per month in manual reporting."
           ],
-          "techStack": "AWS, Cloudflare, MySQL, Redis, RabbitMQ, ELK, REST API, FIX API, Microservices, Laravel, Node JS, Go, AI assisted, Git, Jira, CI/CD, Docker"
+          "techStack": "AWS, Cloudflare, MySQL, Redis, RabbitMQ, ELK, Go, Node.js, Laravel, Docker, FIX API"
         },
         {
-          "id": "role-1790591581836",
-          "jobTitle": "Research And Development Lead",
-          "dateRange": "Jan 2024 - Oct 2024",
+          "id": "role-sam-2",
+          "jobTitle": "Research And Development Manager",
+          "dateRange": "Jan 2024 – Oct 2024",
           "bullets": [
-            "Spearheaded the architecture modernization roadmap, decomposing a monolith into 8 microservices with event-driven patterns, reducing deployment time from hours to under 15 minutes.",
-            "Pioneered the company's DevOps practice: introduced Git workflow, CI/CD pipelines, and automated deployments, increasing release frequency from monthly to weekly and cutting deployment errors by 70%.",
-            "Built a trading algorithm simulation environment used by the team to backtest and validate 12 strategies before production release.",
-            "Delivered proof of concept integrations with liquidity providers via REST and FIX API",
-            "Led a 3 person R&D unit focused on scalability, latency reduction, and real-time data broadcasting, achieving 40% lower latency on the market data distribution pipeline."
+            "Spearheaded core architecture modernization, decomposing a legacy monolith into 8 event-driven microservices behind an API gateway as the single entry point, so all external traffic is routed, authenticated, and rate-limited centrally instead of reaching services directly, and reducing deployment duration from hours to under 15 minutes.",
+            "Authored structured, versioned API documentation (OpenAPI/Swagger) for every service, giving frontend, QA, and partner teams a single source of truth and cutting integration and onboarding time by ~60%.",
+            "Pioneered automated DevOps and CI/CD pipelines, increasing release frequency from monthly to weekly and reducing production deployment errors by 70%.",
+            "Delivered proof of concept integrations with liquidity providers via REST and FIX API, and built a trading simulation environment to backtest 12 algorithmic strategies."
           ],
-          "techStack": "AWS, Laravel, Python, Go, Node.JS, Meta Trader, FIX API"
+          "techStack": "AWS, Go, Node.js, Laravel, Python, FIX API, Docker, Meta Trader, Swagger"
         }
       ]
     },
     {
-      "id": "emp-1790592346026",
+      "id": "emp-mifx",
       "company": "MIFX",
       "employmentType": "Full-time",
-      "companyDateRange": "May 2022 - Dec 2023",
+      "companyDateRange": "May 2022 – Dec 2023",
       "roles": [
         {
-          "id": "role-1790592346026",
-          "jobTitle": "Engneering Lead",
-          "dateRange": "Jan 2023 - Dec 2023",
+          "id": "role-mifx-1",
+          "jobTitle": "Engineering Manager",
+          "dateRange": "Jan 2023 – Dec 2023",
           "bullets": [
-            "Led the Backend organization of 13+ engineers, directly managing 3 tribe leads / technical leads and setting technical direction across squads.",
-            "Introduced an event driven microservices architecture using RabbitMQ, SAGA, and CQRS patterns, improving data consistency across 9 services and reducing order processing latency by 35%.",
-            "Designed the API layer with AWS API Gateway and service/repository patterns, supporting ~500,000 requests per day with p95 response time under 250 ms.",
-            "Built real time notification delivery with Socket.IO, pushing trade and price updates to ~3,000 concurrent users with under 1 second delay.",
-            "Delivered trading platform features for web, working with frontend teams to cut page load time by 40% and improve application performance.",
-            "Shipped scalable APIs and frontend integrations for 4 financial products, contributing to 25% growth in active trading accounts."
+            "Managed the Backend organization of 13+ engineers across 3 squad leads, aligning architecture roadmaps with business priorities and mentoring senior talent.",
+            "Architected an event-driven microservices architecture using RabbitMQ, SAGA, and CQRS patterns, improving data consistency across 9 services and reducing order latency by 35%.",
+            "Scaled API layer via AWS API Gateway and service-repository patterns, handling ~500,000 requests per day with p95 response time under 250 ms.",
+            "Implemented real-time notification streaming with WebSockets (Socket.IO), broadcasting trade executions and price feeds to ~3,000 concurrent users with sub-second latency."
           ],
-          "techStack": "Laravel, MySQL, Redis, ELK, Microservices"
+          "techStack": "AWS, Laravel, Node.js, MySQL, Redis, RabbitMQ, ELK"
         },
         {
-          "id": "role-1790592469105",
+          "id": "role-mifx-2",
           "jobTitle": "Technical Lead",
-          "dateRange": "May 2022 - Dec 2022",
+          "dateRange": "May 2022 – Dec 2022",
           "bullets": [
-            "Architected the microservices infrastructure for the  trading platform on AWS (API Gateway, NLB, ECS, Aurora, Redis, Docker), supporting ~2,000 concurrent users with 99.9% uptime.",
-            "Designed and deployed the ELK stack for centralized logging and monitoring, reducing mean time to detect incidents from ~4 hours to ~15 minutes.",
-            "Architected the MIFX platform on Alibaba Cloud, delivering a multi-cloud track record across AWS and Alibaba Cloud, with 7 services deployed and zero downtime releases.",
-            "Integrated the OneZero FIX API for order routing and price feeds, handling ~20,000 orders per day with ~50 ms average latency.",
-            "Established engineering standards (code conventions, service/repository pattern, unit testing) across 3 projects (AMB, MIFX, Value Trade), raising test coverage from ~10% to ~70%.",
-            "Led technical hiring and onboarding: planned the hiring process and recruited 6 engineers within 4 months, reducing time to hire by 30%."
+            "Architected trading platform infrastructure on AWS (API Gateway, NLB, ECS, Aurora, Redis, Docker), supporting ~2,000 concurrent users with 99.9% uptime.",
+            "Architected and deployed 7 microservices across both AWS and Alibaba Cloud with zero downtime releases, establishing redundant multi-cloud operational capability.",
+            "Integrated OneZero FIX API for low-latency market order routing and price feeds, processing ~20,000 orders per day at ~50 ms average latency.",
+            "Standardized engineering practices across 3 financial products, increasing automated test coverage from ~10% to ~70% and recruiting 6 engineers within 4 months."
           ],
-          "techStack": "AWS, Laravel, Node.JS, RabbitMq, FIX, Socket IO, ELK, Redis, Docker, Microservices"
+          "techStack": "AWS, Alibaba Cloud, ECS, Aurora, Redis, Docker, FIX API, Laravel, Node.js"
         }
       ]
     },
     {
-      "id": "emp-1790607616461",
+      "id": "emp-dxtr",
       "company": "DXTR ASIA",
       "employmentType": "Full-time",
-      "companyDateRange": "Jul 2018 - May 2022",
+      "companyDateRange": "Jul 2018 – May 2022",
       "roles": [
         {
-          "id": "role-1790607616461",
+          "id": "role-dxtr-1",
           "jobTitle": "Technical Lead",
-          "dateRange": "Aug 2020 - May 2022",
+          "dateRange": "Aug 2020 – May 2022",
           "bullets": [
-            "Lead a cross-functional team of ~15 engineers (Backend, Frontend, QA), coordinating delivery across 3 vendors and 4 squads while partnering with the CTO and Project Manager on roadmap and priorities.",
-            "Designed and scaled a notification platform delivering ~5 million notifications per day and large scale data exports, sustaining ~20,000 messages per minute at peak with 99.9% delivery success.",
-            "Evolved microservices and event driven systems on AWS (ECS, EKS, API Gateway, Aurora, DynamoDB), cutting infrastructure cost by ~25% and improving p95 response time from ~800 ms to ~300 ms.",
-            "Improved CI/CD and deployment pipelines, reducing release time from ~2 hours to ~20 minutes and increasing deployment frequency from bi weekly to daily.",
-            "Strengthened system reliability with New Relic monitoring and alerting, reducing production incidents by ~40% and mean time to resolve by ~50%.",
-            "Raised engineering quality through code review standards, security reviews, and Agile practices; mentored engineers and supported hiring, onboarding, and performance reviews for 15 team members."
+            "Led cross-functional team of ~15 engineers across 4 squads and 3 partner vendors, directing technical delivery and system scalability in close coordination with the CTO.",
+            "Scaled notification backbone delivering ~5 million notifications per day (~20,000 messages/min at peak) with 99.9% delivery success.",
+            "Modernized microservices on AWS (ECS, EKS, API Gateway, Aurora, DynamoDB), cutting infrastructure costs by ~25% and reducing p95 latency from ~800 ms to ~300 ms.",
+            "Instituted automated CI/CD and New Relic APM alerting, shortening deployment cycles from 2 hours to 20 minutes and cutting production incidents by ~40%."
           ],
-          "techStack": "Angular, React, Node.js, Laravel, Lumen, MySQL, DynamoDB, AWS, ECS, EKS, API Gateway, Aurora, Redis, ELK, Docker, CI/CD, Microservices"
+          "techStack": "AWS, EKS, ECS, Aurora, DynamoDB, Redis, Node.js, Laravel, Docker"
         },
         {
-          "id": "role-1790607809945",
+          "id": "role-dxtr-2",
           "jobTitle": "Lead Backend Developer",
-          "dateRange": "Aug 2019 - Jul 2020",
+          "dateRange": "Aug 2019 – Jul 2020",
           "bullets": [
-            "Led the migration of SRC projects from monolith to microservices on AWS (ECS), cutting deployment time from ~1 hour to ~10 minutes and improving API response time by ~45%.",
-            "Led and mentored a backend team of 5 engineers, setting technical direction on performance, reliability, and maintainability; reduced production bugs by ~35% through code review standards and SonarQube quality gates.",
-            "Designed and implemented asynchronous messaging with AWS SQS and SNS, decoupling services and handling ~100,000 events per day with zero message loss.",
-            "Built and maintained large-scale applications for 4 client projects (Spotme, Toyota Admin, AYO-SRC, IQOS), serving ~50,000 active users across web and mobile.",
-            "Improved CI/CD with Jenkins and monitoring with New Relic, raising test coverage from ~15% to ~65% and reducing incident response time by ~40%."
+            "Led migration of Sampoerna Retail Community (SRC) applications from monolith to microservices on AWS (ECS), improving API response times by ~45%.",
+            "Engineered asynchronous messaging pipelines with AWS SQS/SNS, decoupling service dependencies and processing ~100,000 daily events with zero loss.",
+            "Mentored a 5-engineer backend team and established SonarQube quality gates, reducing production defects by ~35%."
           ],
-          "techStack": "PHP, Laravel, MySQL, RDS, DynamoDB, Redis, AWS, ECS, EC2, Docker, Jenkins, Nginx, Firebase, New Relic, SonarQube, Git, Jira"
+          "techStack": "AWS, ECS, SQS, SNS, Laravel, MySQL, DynamoDB, Redis"
         },
         {
-          "id": "role-1790608013714",
+          "id": "role-dxtr-3",
           "jobTitle": "Senior Backend Developer",
-          "dateRange": "Jul 2018 - Jul 2019",
+          "dateRange": "Jul 2018 – Jul 2019",
           "bullets": [
-            "Built the SRC backend from the ground up (B2B, B2C, and DTE platforms), supporting ~3,000 concurrent users at launch with 99.5% uptime.",
-            "Designed REST APIs in Laravel and Lumen, with MySQL, Redis, and DynamoDB caching strategies that cut average API response time by ~50% and database load by ~40%.",
-            "Integrated OTP messaging and Gojek delivery services, achieving >98% OTP delivery success and enabling same day delivery for ~500 orders per day.",
-            "Monitored performance with New Relic and Flare, reducing production errors by ~30% and resolving critical incidents in under 2 hours on average."
+            "Engineered core backend platforms (B2B, B2C, DTE) for SRC from the ground up, sustaining ~3,000 concurrent users at initial rollout with 99.5% uptime.",
+            "Designed caching architectures across Redis and DynamoDB, reducing database query load by ~40% and integrating Gojek delivery and OTP services."
           ],
-          "techStack": "PHP, Laravel,  MySQL, RDS, DynamoDB, Redis, AWS, ECS, EC2, Docker, Jenkins, Nginx, Firebase, New Relic, SonarQube, Git, Jira"
+          "techStack": "Laravel, Lumen, MySQL, DynamoDB, Redis, AWS EC2, ECS"
         }
       ]
     },
     {
-      "id": "emp-1790608946977",
+      "id": "emp-consulting",
+      "company": "Consulting & Contract Engineering",
+      "employmentType": "Concurrent / Contract",
+      "companyDateRange": "Apr 2020 – Apr 2026",
+      "roles": [
+        {
+          "id": "role-consult-1",
+          "jobTitle": "Software Architect & Security Consultant",
+          "dateRange": "Apr 2020 – Apr 2026",
+          "bullets": [
+            "PT Rayanusa Tekno Medika (2020 – 2026): Architected EMOP healthcare management platform (~2,000 users) and audited cloud security for ICE ON IMERI; implemented OWASP Top 10 and ISO 27001 controls, passing 2 external penetration tests with zero critical findings.",
+            "Crocodic / LKPP (2021): Built Request for Quotation (RFQ) microservices and real-time WebSocket chat (~1,500 connections) for Toko Daring LKPP national government e-procurement marketplace.",
+            "PT Satuu Teknologi Utama (2021 – 2022): Architected offline-first ERP system for 21 warehouse branches, eliminating data loss during connectivity outages and cutting hosting costs by ~20% on AWS."
+          ],
+          "techStack": "AWS, Laravel, React, React Native, Node.js, MySQL, Redis, OWASP"
+        }
+      ]
+    },
+    {
+      "id": "emp-early",
       "company": "PT Internet Solusi Layanan Informasi Mandiri",
       "employmentType": "Full-time",
-      "companyDateRange": "Apr 2018 - Jun 2018",
+      "companyDateRange": "Apr 2018 – Jun 2018",
       "roles": [
         {
-          "id": "role-1790608946977",
+          "id": "role-early-1",
           "jobTitle": "Full Stack Developer",
-          "dateRange": "",
+          "dateRange": "Apr 2018 – Jun 2018",
           "bullets": [
-            "Delivered ~2 web applications end to end, including company profiles, e-commerce, e-government, and GIS platforms, for ~2 clients.",
-            "Translated requirements from the CTO and business team into database designs and user interfaces, reducing rework by ~30%.",
-            "Built admin dashboards and reporting modules that replaced manual spreadsheet reporting"
+            "Developed database models, REST endpoints, and automated reporting dashboards for client web applications using PHP and PostgreSQL.",
+            "Translated requirements from the CTO and business team into database designs and user interface",
+            "Delivered ~2 web applications end to end, including company profiles, e-commerce, e-government, and GIS platforms, for ~2 clients"
           ],
-          "techStack": "PHP, CI, PostgreSQL, Apache, Javascript, jQuery, Ajax, Html, CSS, Trello"
-        }
-      ]
-    },
-    {
-      "id": "emp-1790608166588",
-      "company": "PT Rayanusa Tekno Medika",
-      "employmentType": "Freelance",
-      "companyDateRange": "Apr 2020 - Apr 2026",
-      "roles": [
-        {
-          "id": "role-1790608166588",
-          "jobTitle": "Lead Engineer",
-          "dateRange": "",
-          "bullets": [
-            "Architected and delivered the EMOP electronic office management platform (Laravel, React, MySQL), serving ~2,000 users with a ~3-month go-live.",
-            "Designed the cloud infrastructure for EMOP and advised on AWS security architecture for the ICE ON IMERI project, closing ~25 security findings from the initial assessment.",
-            "Implemented OWASP Top 10 safeguards aligned with ISO 27001 controls, passing 2 penetration test rounds with zero critical findings.",
-            "Led a team of 2 backend and frontend engineers as software architect for the Travel Pass web and mobile platform, working directly with the client and project manager.",
-            "Integrated payment gateways (DOKU, Midtrans, iPaymu) into Travel Pass, supporting 3 payment methods with ~96% payment success rate."
-          ],
-          "techStack": "Laravel, React.JS, Payment Gateway, AWS, Mysql, Redis, OAuth2, React Native"
-        }
-      ]
-    },
-    {
-      "id": "emp-1790608430943",
-      "company": "Crocodic",
-      "employmentType": "Freelance",
-      "companyDateRange": "Sep 2021 - Dec 2021",
-      "roles": [
-        {
-          "id": "role-1790608430943",
-          "jobTitle": "Senior Backend Engineer",
-          "dateRange": "",
-          "bullets": [
-            "Built RESTful APIs with Lumen and MySQL in a microservices architecture for Toko Daring LKPP, a national government e-procurement marketplace.",
-            "Developed the Request for Quotation (RFQ) system, enabling buyers to request and compare vendor offers.",
-            "Implemented real-time chat and notifications with WebSocket (Node.js, Socket.io), supporting ~1,500 concurrent connections with under 1-second delivery."
-          ],
-          "techStack": "PHP, Lumen, NodeJS, Socket.io, MySQL"
-        }
-      ]
-    },
-    {
-      "id": "emp-1790608718291",
-      "company": "PT Satuu Teknologi Utama",
-      "employmentType": "Freelance",
-      "companyDateRange": "Jan 2021 - Apr 2022",
-      "roles": [
-        {
-          "id": "role-1790608718291",
-          "jobTitle": "Lead Engineer",
-          "dateRange": "",
-          "bullets": [
-            "Built an ERP system (inventory, purchasing, and sales modules) with automatic hybrid online/offline mode, letting warehouse staff keep working through connectivity loss and syncing data once back online with zero data loss.",
-            "Designed the backend with a service-pattern architecture (Lumen, MySQL), supporting ~200 users across 21 warehouses and branches.",
-            "Implemented a Progressive Web App (PWA) with offline caching, cutting page load time by ~50% and eliminating downtime-related stock-entry delays.",
-            "Led a frontend team of 2 engineers (React.js) and delivered a React Native mobile app for warehouse operations, reducing manual stock count.",
-            "Set up and managed the AWS cloud environment (EC2, RDS, S3), achieving 99.9% uptime and reducing hosting cost by ~20% versus the previous setup."
-          ],
-          "techStack": "PHP, Lumen, MySQL, React.JS, React Native"
+          "techStack": "PHP, PostgreSQL, JavaScript, Apache"
         }
       ]
     }
@@ -277,112 +214,88 @@
   "education": [
     {
       "id": "edu-1",
-      "dateRange": "2016 — 2020",
+      "dateRange": "2013 – 2017",
       "degree": "Bachelor of Computer Science (S.Kom)",
       "institution": "Universitas Negeri Semarang",
-      "details": "Focus on Software Engineering, Web Technologies & Distributed Systems. GPA 3.6/4.00"
+      "details": "Focus on Software Engineering & Distributed Systems. GPA 3.6/4.00"
     },
     {
-      "id": "edu-1790609231041",
-      "dateRange": "2016 - 2016",
-      "degree": "Short Course",
+      "id": "edu-2",
+      "dateRange": "2016",
+      "degree": "Short Course in Computing",
       "institution": "Hiroshima University",
-      "details": ""
+      "details": "International exchange program in applied computer science."
     }
   ],
   "projects": [
     {
-      "id": "proj-1790614391050",
+      "id": "proj-1",
       "dateRange": "2026",
       "projectName": "Sobat Saham",
-      "role": "Full Stack Developer",
-      "description": "Quantitative analytics platform for the Indonesia Stock Exchange (IDX), providing retail investors with disciplined valuation screeners, technical signals, and portfolio tracking.",
+      "role": "Full Stack Developer & Creator",
+      "description": "Quantitative analytics platform for the Indonesia Stock Exchange (IDX), providing retail investors with disciplined valuation screeners, financial metrics, and portfolio tracking.",
       "projectUrl": "https://www.sobatsaham.com/"
     },
     {
-      "id": "proj-1",
+      "id": "proj-2",
       "dateRange": "2026",
       "projectName": "AMB Megatrend",
       "role": "Engineering Lead",
-      "description": "Liquidity provider and institutional administration dashboard built for precision financial operations, position risk assessment, and high-frequency reporting.",
+      "description": "Institutional liquidity provider and risk management dashboard engineered for precision financial operations, position risk assessment, and real-time execution analytics.",
       "projectUrl": "https://ambmegatrend.com/"
     },
     {
-      "id": "proj-1790614150595",
+      "id": "proj-1791445494537",
       "dateRange": "2025",
       "projectName": "Alzubara",
+      "projectUrl": "https://www.alzubara.co.id/",
       "role": "Full Stack Developer",
-      "description": "Verified international career placement platform connecting Indonesian skilled professionals with certified, legal employment opportunities across the Middle East and globally.",
-      "projectUrl": "https://www.alzubara.co.id/"
+      "description": "Verified international career placement platform connecting Indonesian skilled professionals with certified, legal employment opportunities\nacross the Middle E\nast and globally."
     },
     {
-      "id": "proj-1791379704454",
-      "dateRange": "2025",
-      "projectName": "GOGOJALAN",
-      "projectUrl": "https://www.gogojalan.com/",
-      "role": "Full Stack Developer",
-      "description": "GOGOJALAN is a flight booking platform for domestic and international travel, providing flight search, booking inquiries, pricing, and customer support through an integrated web experience."
-    },
-    {
-      "id": "proj-1790614019218",
-      "dateRange": "2023",
-      "projectName": "M2 (Valutrades)",
-      "role": "Engineering Lead",
-      "description": "High-performance portal and trading interface for global forex, indices, and commodities trading prioritizing strict execution speed, data transparency, and security.",
-      "projectUrl": "https://www.valutrades.com/"
-    },
-    {
-      "id": "proj-1790614044185",
-      "dateRange": "2022",
-      "projectName": "MIFX",
-      "role": "Engineering Lead",
-      "description": "Forex and commodity trading web applications featuring low-latency market order execution, real-time WebSocket notifications, and event-driven architecture with RabbitMQ.",
+      "id": "proj-3",
+      "dateRange": "2022 – 2023",
+      "projectName": "MIFX Trading Platform",
+      "role": "Engineering Manager & Technical Lead",
+      "description": "High-throughput forex and commodity trading web platforms with low-latency order routing, real-time WebSocket market updates, and event-driven microservices handling 500,000+ daily requests.",
       "projectUrl": "https://mifx.com/"
     },
     {
-      "id": "proj-1790614079640",
+      "id": "proj-1791445688652",
       "dateRange": "2021",
       "projectName": "ERP Khasanahsari",
-      "role": "Lead Engineer",
-      "description": "End-to-end Enterprise Resource Planning platform tailored for bakery production, raw material forecasting, batch tracking, outlet logistics, and automated ledger balancing.",
-      "projectUrl": "https://erpkhasanahsari.com/"
+      "projectUrl": "https://erpkhasanahsari.com/",
+      "role": "Full Stack Developer",
+      "description": "End to end Enterprise Resource Planning platform tailored for bakery production, raw material forecasting, batch tracking, outlet logistics,\nand automated ledger balancing"
     },
     {
-      "id": "proj-1790614121325",
-      "dateRange": "2020",
-      "projectName": "EMOP",
-      "role": "Lead Engineer",
-      "description": "Integrated medical membership portals for the Indonesian Society of Obstetrics and Gynecology, managing professional accreditation, clinical education records, and digital congress events.",
-      "projectUrl": "https://emop.pogi.or.id/"
+      "id": "proj-4",
+      "dateRange": "2018 – 2020",
+      "projectName": "Sampoerna Retail Community (SRC)",
+      "role": "Senior Backend Developer → Lead Backend Developer",
+      "description": "Ecosystem of 7 interconnected web and mobile platforms modernizing Indonesia's traditional retail grocery network on scalable AWS microservices, supporting high-volume daily retail transactions.",
+      "projectUrl": "https://www.src.id/"
     },
     {
-      "id": "proj-1790614141410",
-      "dateRange": "2020",
-      "projectName": "ONEPOGI",
-      "role": "Lead Engineer",
-      "description": "ONEPOGI is a unified membership contribution program that provides POGI members with eight key benefits, supported by POGI’s Electronic Management Office (EMOP-POGI). The program was initiated by the POGI Central Board.",
-      "projectUrl": "https://one.pogi.or.id/"
-    },
-    {
-      "id": "proj-1790614313295",
+      "id": "proj-1791445536253",
       "dateRange": "2020",
       "projectName": "QuickMath",
+      "projectUrl": "https://quickmath.id/",
       "role": "Full Stack Developer",
-      "description": "Online learning and automated tutoring platform featuring step-by-step mathematical reasoning, tutor booking consultation flows, and interactive problem solving.",
-      "projectUrl": "https://quickmath.id/"
+      "description": "Online learning and automated tutoring platform featuring step-by-step mathematical reasoning, tutor booking consultation flows, and\ninteractive problem solving"
     },
     {
-      "id": "proj-1790614060697",
-      "dateRange": "2018",
-      "projectName": "Sampoerna Retail Community (SRC)",
-      "role": "Technical Lead",
-      "description": "A comprehensive ecosystem of 7 interconnected web and mobile platforms modernizing Indonesia's traditional grocery and retail community. Engineered with a scalable microservices backbone on AWS, enabling high-volume transactions, inventory coordination, order fulfilment, and store analytics.",
-      "projectUrl": "https://www.src.id/"
+      "id": "proj-1791445552286",
+      "dateRange": "2020",
+      "projectName": "ONEPOGI",
+      "projectUrl": "https://one.pogi.or.id/",
+      "role": "Full Stack Developer",
+      "description": "ONEPOGI is a unified membership contribution program that provides POGI members with eight key benefits, supported by POGI’s\nElectronic Management Office (EMOP-POGI). The program was initiated by the POGI Central Board"
     }
   ],
   "certifications": [
     {
-      "id": "cert-1790613308205",
+      "id": "cert-1",
       "dateRange": "2022",
       "name": "Menjadi Google Cloud Engineer",
       "issuer": "Dicoding Indonesia",
@@ -391,34 +304,16 @@
       "details": ""
     },
     {
-      "id": "cert-1790613411606",
+      "id": "cert-1791445188238",
       "dateRange": "2022",
-      "name": "AWS Services for Solutions Architect Associate [2021]",
+      "name": "AWS Services for Solutions Architect Associate",
       "issuer": "Udemy",
-      "credentialId": "UC-d6bd0959-450d-4370-b721-28be2e3cc795",
+      "credentialId": "UC-d6bd0959-45 0d-437 0-b72 1-28be2e3cc795",
       "credentialUrl": "https://www.udemy.com/certificate/UC-d6bd0959-450d-4370-b721-28be2e3cc795/",
       "details": ""
     },
     {
-      "id": "cert-1790613443234",
-      "dateRange": "2021",
-      "name": "Architecting on AWS (Membangun Arsitektur Cloud di AWS)",
-      "issuer": "Dicoding Indonesia",
-      "credentialId": "1OP8L72L2ZQK",
-      "credentialUrl": "https://www.dicoding.com/certificates/1OP8L72L2ZQK",
-      "details": ""
-    },
-    {
-      "id": "cert-1790613486494",
-      "dateRange": "2021",
-      "name": "Getting started with Microservices with Istio and IBM Cloud Kubernetes Service",
-      "issuer": "IBM",
-      "credentialId": "b3d117c9-e592-48a0-ac8c-49a4a5e02816",
-      "credentialUrl": "https://www.credly.com/badges/b3d117c9-e592-48a0-ac8c-49a4a5e02816?source=linked_in_profile",
-      "details": ""
-    },
-    {
-      "id": "cert-1790613629634",
+      "id": "cert-3",
       "dateRange": "2021",
       "name": "ISO 27001 - Network & Communication Security Management",
       "issuer": "Udemy",
@@ -427,8 +322,17 @@
       "details": ""
     },
     {
-      "id": "cert-1790613656350",
-      "dateRange": "2024",
+      "id": "cert-1791445249637",
+      "dateRange": "2021",
+      "name": "Getting started with Microservices with Istio and IBM Cloud Kubernetes Service ",
+      "issuer": "IBM",
+      "credentialId": "b3d117c9-e592-48a0-ac8c-49a4a5e02816",
+      "credentialUrl": "https://www.credly.com/badges/b3d117c9-e592-48a0-ac8c-49a4a5e02816",
+      "details": ""
+    },
+    {
+      "id": "cert-1791445294820",
+      "dateRange": "2021",
       "name": "Oracle Cloud Infrastructure Foundations 2021 Associate",
       "issuer": "Oracle",
       "credentialId": "74FC7A2D6EB468B96E1C4D411B3E2D3C01DD76BDADACF099B80DA912370B9440",
@@ -436,27 +340,27 @@
       "details": ""
     },
     {
-      "id": "cert-1790613682240",
+      "id": "cert-1791445317570",
       "dateRange": "2021",
-      "name": "Software Architecture and Clean Code Design in OOP",
+      "name": "Software Architecture and Clean Code Design in OOP ",
       "issuer": "Udemy",
-      "credentialId": "UC-05db6418-d664-4c6e-b127-8424283c553c",
+      "credentialId": "UC-05db6418-d664-4c6e-b127-8424283c553c/",
       "credentialUrl": "https://www.udemy.com/certificate/UC-05db6418-d664-4c6e-b127-8424283c553c/",
       "details": ""
     },
     {
-      "id": "cert-1790613750363",
+      "id": "cert-1791445346487",
       "dateRange": "2021",
-      "name": "Pentesting and Securing Web Applications (Ethical Hacking)",
+      "name": "Pentesting and Securing Web Applications (Ethical Hacking) ",
       "issuer": "Udemy",
-      "credentialId": "UC-185040b9-07c9-4526-9895-3474bbae3099",
+      "credentialId": "UC-185040b9-07c9-4526-9895-3474bbae3099/",
       "credentialUrl": "https://www.udemy.com/certificate/UC-185040b9-07c9-4526-9895-3474bbae3099/",
       "details": ""
     },
     {
-      "id": "cert-1790613801613",
+      "id": "cert-1791445370870",
       "dateRange": "2021",
-      "name": "Back End Development and APIs",
+      "name": "Back End Development and APIs ",
       "issuer": "freeCodeCamp",
       "credentialId": "fcc52f59178-46f6-4ce4-b2c0-7953d242f204",
       "credentialUrl": "https://www.freecodecamp.org/certification/fcc52f59178-46f6-4ce4-b2c0-7953d242f204/back-end-development-and-apis",
@@ -479,8 +383,9 @@
     "fontFamily": "EB Garamond",
     "fontSize": "10pt",
     "lineHeight": "1.45",
-    "paperMargin": "18mm",
+    "paperMargin": "16mm",
     "leftColWidth": "25%",
+    "layoutMode": "single-column",
     "showProjects": true,
     "showEducation": true,
     "showCertifications": true,
@@ -496,5 +401,5 @@
       "languages"
     ]
   },
-  "_updatedAt": 1791427950609
+  "_updatedAt": 1791447585760
 }
