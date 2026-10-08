@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
   
   <!-- Application Stylesheet -->
-  <link rel="stylesheet" href="assets/css/style.css?v=2.7">
+  <link rel="stylesheet" href="assets/css/style.css?v=2.8">
   
   <!-- Export Libraries (Local with CDN Fallback) -->
   <script src="assets/libs/docx.umd.js"></script>
@@ -91,18 +91,19 @@
         <span class="btn-text-hide">Reset</span>
       </button>
 
-      <!-- Print / Vector PDF -->
-      <button id="btn-print" class="btn btn-secondary btn-sm" title="Print atau Save as PDF (Vector Tajam)">
+      <!-- Check ATS Plain Text Extraction -->
+      <button id="btn-check-ats" class="btn btn-secondary btn-sm" title="Uji ekstraksi teks ATS & salin ke Notepad">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="6 9 6 2 18 2 18 9"></polyline>
-          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
-          <rect x="6" y="14" width="12" height="8"></rect>
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
         </svg>
-        <span class="btn-text-hide">Print</span>
+        <span>Cek Teks ATS</span>
       </button>
 
       <!-- Export Word (.docx) -->
-      <button id="btn-export-docx" class="btn btn-sky" title="Download CV format Microsoft Word (.docx)">
+      <button id="btn-export-docx" class="btn btn-sky" title="Download CV format Microsoft Word (.docx) ATS">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
           <polyline points="14 2 14 8 20 8"></polyline>
@@ -112,14 +113,14 @@
         <span>Word (.docx)</span>
       </button>
 
-      <!-- Direct Export PDF -->
-      <button id="btn-export-pdf" class="btn btn-emerald" title="Download langsung dokumen PDF">
+      <!-- Direct Export PDF (Vector ATS Text) -->
+      <button id="btn-export-pdf" class="btn btn-emerald" title="Cetak atau Simpan sebagai PDF Teks ATS Asli (Save as PDF)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-          <polyline points="7 10 12 15 17 10"></polyline>
-          <line x1="12" y1="15" x2="12" y2="3"></line>
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
         </svg>
-        <span>Download PDF</span>
+        <span>Simpan PDF (ATS)</span>
       </button>
     </div>
 
@@ -273,7 +274,7 @@
                   <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                 </svg>
               </span>
-              <span>Keahlian (Areas of Expertise)</span>
+              <span>Keahlian (Skills)</span>
             </div>
             <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="6 9 12 15 18 9"></polyline>
@@ -339,7 +340,7 @@
                   <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
                 </svg>
               </span>
-              <span>Pengalaman Kerja (Employment History)</span>
+              <span>Pengalaman Kerja (Work Experience)</span>
             </div>
             <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="6 9 12 15 18 9"></polyline>
@@ -552,6 +553,15 @@
           <div class="accordion-body">
             <div class="form-row">
               <div class="form-group">
+                <label class="form-label" for="setting-layout-mode">Format Layout Dokumen</label>
+                <select id="setting-layout-mode" class="form-select">
+                  <option value="single-column" selected>Single-Column (Standar ATS Global - Rekomendasi)</option>
+                  <option value="split-column">Split 2-Kolom (Klasik Tanggal Kiri)</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
                 <label class="form-label" for="setting-font-family">Jenis Font</label>
                 <select id="setting-font-family" class="form-select">
                   <option value="EB Garamond">EB Garamond (Executive Serif - Rekomendasi)</option>
@@ -647,8 +657,8 @@
   <!-- Application Logic Modules -->
   <script src="js/data.js?v=2.7"></script>
   <script src="js/docx-export.js?v=2.8"></script>
-  <script src="js/pdf-export.js?v=2.7"></script>
-  <script src="js/app.js?v=3.0"></script>
+  <script src="js/pdf-export.js?v=2.8"></script>
+  <script src="js/app.js?v=3.1"></script>
 
   <!-- Toast Notification Container -->
   <div id="toast-container" class="toast-container" aria-live="polite"></div>

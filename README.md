@@ -25,7 +25,7 @@ The rendered CV layout follows a refined 2-column executive structure:
 
 ### 2. Live Dynamic Multi-Page A4 Preview
 - **Individual A4 Page Sheets:** Renders distinct physical A4 paper sheets (`210 × 297 mm`) stacked vertically with realistic paper shadows against a dark workspace.
-- **Natural Dynamic Content Flow:** If space remains at the bottom of a page, bullet points and sections continue filling the page naturally without awkward empty holes, then cleanly continue onto the next page with `(Continued)` headers.
+- **Natural Dynamic Content Flow:** If space remains at the bottom of a page, bullet points and sections continue filling the page naturally without awkward empty holes, then cleanly transition onto the next page without duplicate headers or `(Continued)` markers to maintain strict ATS friendliness.
 - **Clean Page Badges & Footers:** Each page has a floating badge (`PAGE 1 (A4)`, `PAGE 2 (A4)`) and footer (`Page 1 of X`). No harsh cut lines across text.
 - **Scroll & Zoom Controls:** Scroll smoothly down through pages with Zoom in, Zoom out, *Fit Screen*, and 100% reset controls.
 
@@ -36,13 +36,14 @@ The rendered CV layout follows a refined 2-column executive structure:
 - **Unload Protection:** Uses `navigator.sendBeacon` on `beforeunload` to flush any pending edits to `data/cv_data.json` if the user refreshes (`Cmd+R`) or closes the tab.
 - **Manual Save & Open:** Keyboard shortcut **`Cmd+S` / `Ctrl+S`** or the **Simpan** button saves to file; **Buka File** loads any saved JSON resume.
 
-### 4. Multi-Format Export
+### 4. Multi-Format Export (100% ATS-Friendly)
+- **Export to PDF (Native Vector Text):**
+  - Uses browser native print rendering (`@media print`) so every single letter is output as real searchable vector text with embedded fonts—**never bitmap/JPEG images**.
+  - 100% compliant with automated Applicant Tracking Systems (Workday, Taleo, Greenhouse, Lever).
+  - Includes **Cek Teks ATS** button in header to verify and copy sequential plain text.
 - **Export to Word (.docx):**
-  - Generates native, fully editable Microsoft Word (`.docx`) files with 2-column table layouts, dividers, bullet points, and active hyperlinks directly downloaded to your computer.
+  - Generates clean, native Microsoft Word (`.docx`) documents with standardized ATS headings (`WORK EXPERIENCE`, `SKILLS`) and sequential layout.
   - Fully compatible with Microsoft Word, Google Docs, Apple Pages, and LibreOffice.
-- **Export to PDF:**
-  - **1-Click Direct Download:** Instant client-side PDF generation via `html2pdf.js` directly downloaded to your computer.
-  - **Print / Vector PDF:** Browser print integration (`Cmd+P` / `Ctrl+P`) with dedicated print styles for crisp, selectable vector text.
   - All UI-only page break guides and badges are automatically hidden in exports.
 
 ---

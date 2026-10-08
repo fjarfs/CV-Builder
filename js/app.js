@@ -479,18 +479,23 @@
     const lineSelect = document.getElementById('setting-line-height');
     const marginSelect = document.getElementById('setting-margin');
     const colSelect = document.getElementById('setting-left-col');
+    const layoutSelect = document.getElementById('setting-layout-mode');
 
     if (s.fontFamily) fontSelect.value = s.fontFamily;
     if (s.fontSize) sizeSelect.value = s.fontSize;
     if (s.lineHeight) lineSelect.value = s.lineHeight;
     if (s.paperMargin) marginSelect.value = s.paperMargin;
     if (s.leftColWidth) colSelect.value = s.leftColWidth;
+    if (layoutSelect) layoutSelect.value = s.layoutMode || 'single-column';
 
     fontSelect.onchange = e => { cvData.settings.fontFamily = e.target.value; triggerSave(); };
     sizeSelect.onchange = e => { cvData.settings.fontSize = e.target.value; triggerSave(); };
     lineSelect.onchange = e => { cvData.settings.lineHeight = e.target.value; triggerSave(); };
     marginSelect.onchange = e => { cvData.settings.paperMargin = e.target.value; triggerSave(); };
     colSelect.onchange = e => { cvData.settings.leftColWidth = e.target.value; triggerSave(); };
+    if (layoutSelect) {
+      layoutSelect.onchange = e => { cvData.settings.layoutMode = e.target.value; triggerSave(); };
+    }
   }
 
   // Update Summary Word Count
@@ -1554,8 +1559,8 @@
   const SECTION_METADATA = {
     links: { name: "Links (Tautan)" },
     summary: { name: "Professional Summary (Ringkasan)" },
-    skills: { name: "Areas of Expertise (Keahlian)" },
-    employment: { name: "Employment History (Pekerjaan)" },
+    skills: { name: "Skills (Keahlian)" },
+    employment: { name: "Work Experience (Pengalaman Kerja)" },
     education: { name: "Education (Pendidikan)" },
     certifications: { name: "Certificates (Sertifikat)" },
     projects: { name: "Projects (Proyek)" },
@@ -1683,6 +1688,7 @@
   function renderCV() {
     const s = cvData.settings || {};
     const root = document.documentElement;
+    const isSingleCol = s.layoutMode !== 'split-column';
 
     // Apply custom typography & layout CSS variables
     root.style.setProperty('--cv-font', getFontFamilyCSS(s.fontFamily));
@@ -1694,12 +1700,13 @@
 
     // Reset document
     cvDocument.innerHTML = '';
+    cvDocument.classList.toggle('layout-single-column', isSingleCol);
     const pages = [];
 
     function makePage() {
       const pageNum = pages.length + 1;
       const page = document.createElement('div');
-      page.className = 'cv-page';
+      page.className = `cv-page${isSingleCol ? ' layout-single-column' : ''}`;
       page.dataset.page = String(pageNum);
       page.innerHTML = `
         <div class="cv-page-badge">
@@ -1746,8 +1753,13 @@
     const p = cvData.personal || {};
     const contactsArr = [];
     if (p.location) contactsArr.push(escapeHtml(p.location));
-    if (p.phone) contactsArr.push(escapeHtml(p.phone));
-    if (p.email) contactsArr.push(escapeHtml(p.email));
+    if (p.phone) {
+      const cleanPhone = p.phone.replace(/[^\d+]/g, '');
+      contactsArr.push(`<a class="cv-header-link" href="tel:${escapeHtml(cleanPhone)}">${escapeHtml(p.phone)}</a>`);
+    }
+    if (p.email) {
+      contactsArr.push(`<a class="cv-header-link" href="mailto:${escapeHtml(p.email)}">${escapeHtml(p.email)}</a>`);
+    }
 
     const jobTitleHtml = p.jobTitle && p.jobTitle.trim()
       ? `<div class="cv-header-role">${escapeHtml(p.jobTitle.trim())}</div>`
@@ -1814,10 +1826,9 @@
           const sec = document.createElement('section');
           sec.className = `cv-section${isContinued ? ' cv-section-continued' : ''}`;
           sec.dataset.sectionKey = 'summary';
-          const label = isContinued ? ' <span class="cv-section-cont-label">(Continued)</span>' : '';
           sec.innerHTML = `
             <div class="cv-section-row">
-              <div class="cv-section-title">SUMMARY${label}</div>
+              <div class="cv-section-title">SUMMARY</div>
               <div class="cv-section-content cv-summary-text"></div>
             </div>
           `;
@@ -1870,7 +1881,7 @@
         sec.dataset.sectionKey = 'skills';
         sec.innerHTML = `
           <div class="cv-section-row">
-            <div class="cv-section-title">AREAS OF EXPERTISE</div>
+            <div class="cv-section-title">SKILLS</div>
             <div class="cv-section-content cv-skills-grid">
               <div class="cv-skill-column">${col1Html}</div>
               <div class="cv-skill-column">${col2Html}</div>
@@ -1893,10 +1904,9 @@
           const sec = document.createElement('section');
           sec.className = `cv-section${isContinued ? ' cv-section-continued' : ''}`;
           sec.dataset.sectionKey = 'employment';
-          const label = isContinued ? ' <span class="cv-section-cont-label">(Continued)</span>' : '';
           sec.innerHTML = `
             <div class="cv-section-row" style="margin-bottom: 8px;">
-              <div class="cv-section-title">EMPLOYMENT HISTORY${label}</div>
+              <div class="cv-section-title">WORK EXPERIENCE</div>
               <div class="cv-section-content"></div>
             </div>
           `;
@@ -1932,15 +1942,25 @@
           function createCompanyGroup(isContinued = false) {
             const grp = document.createElement('div');
             grp.className = 'cv-company-group';
-            const contLabel = isContinued ? ' <span class="cv-company-type">(Continued)</span>' : '';
-            grp.innerHTML = `
-              <div class="cv-company-header-row">
-                <div class="cv-job-date cv-company-date">${escapeHtml(job.companyDateRange || '')}</div>
-                <div class="cv-company-main">
-                  <div class="cv-company-name-heading">${escapeHtml(job.company || '')}${typeHtml}${contLabel}</div>
+            if (isSingleCol) {
+              grp.innerHTML = `
+                <div class="cv-company-header-row">
+                  <div class="cv-company-main">
+                    <span class="cv-company-name-heading">${escapeHtml(job.company || '')}</span>${typeHtml}
+                  </div>
+                  <div class="cv-company-date">${escapeHtml(job.companyDateRange || '')}</div>
                 </div>
-              </div>
-            `;
+              `;
+            } else {
+              grp.innerHTML = `
+                <div class="cv-company-header-row">
+                  <div class="cv-job-date cv-company-date">${escapeHtml(job.companyDateRange || '')}</div>
+                  <div class="cv-company-main">
+                    <div class="cv-company-name-heading">${escapeHtml(job.company || '')}${typeHtml}</div>
+                  </div>
+                </div>
+              `;
+            }
             return grp;
           }
 
@@ -1968,14 +1988,25 @@
             function createRoleEntry(isContinued = false) {
               const entry = document.createElement('div');
               entry.className = `cv-job-entry cv-sub-role ${isLastRole ? 'cv-last-role' : ''}`;
-              const contLabel = isContinued ? ' <span class="cv-role-title-cont">(Continued)</span>' : '';
-              entry.innerHTML = `
-                <div class="cv-job-date">${isContinued ? '' : escapeHtml(role.dateRange || '')}</div>
-                <div class="cv-job-main">
-                  <div class="cv-job-header cv-role-title">${escapeHtml(role.jobTitle || '')}${contLabel}</div>
-                  <ul class="cv-job-bullets"></ul>
-                </div>
-              `;
+              if (isSingleCol) {
+                entry.innerHTML = `
+                  <div class="cv-role-header-line">
+                    <div class="cv-job-header cv-role-title">${escapeHtml(role.jobTitle || '')}</div>
+                    <div class="cv-job-date">${isContinued ? '' : escapeHtml(role.dateRange || '')}</div>
+                  </div>
+                  <div class="cv-job-main">
+                    <ul class="cv-job-bullets"></ul>
+                  </div>
+                `;
+              } else {
+                entry.innerHTML = `
+                  <div class="cv-job-date">${isContinued ? '' : escapeHtml(role.dateRange || '')}</div>
+                  <div class="cv-job-main">
+                    <div class="cv-job-header cv-role-title">${escapeHtml(role.jobTitle || '')}</div>
+                    <ul class="cv-job-bullets"></ul>
+                  </div>
+                `;
+              }
               return entry;
             }
 
@@ -2123,10 +2154,9 @@
           const sec = document.createElement('section');
           sec.className = `cv-section${isContinued ? ' cv-section-continued' : ''}`;
           sec.dataset.sectionKey = 'education';
-          const label = isContinued ? ' <span class="cv-section-cont-label">(Continued)</span>' : '';
           sec.innerHTML = `
             <div class="cv-section-row" style="margin-bottom: 8px;">
-              <div class="cv-section-title">EDUCATION${label}</div>
+              <div class="cv-section-title">EDUCATION</div>
               <div class="cv-section-content"></div>
             </div>
           `;
@@ -2153,13 +2183,23 @@
 
           const entry = document.createElement('div');
           entry.className = 'cv-edu-entry';
-          entry.innerHTML = `
-            <div class="cv-edu-date">${escapeHtml(edu.dateRange || '')}</div>
-            <div class="cv-edu-main">
-              <div class="cv-edu-header">${titleInst}</div>
+          if (isSingleCol) {
+            entry.innerHTML = `
+              <div class="cv-edu-header-line">
+                <div class="cv-edu-header">${titleInst}</div>
+                <div class="cv-edu-date">${escapeHtml(edu.dateRange || '')}</div>
+              </div>
               ${detailsHtml}
-            </div>
-          `;
+            `;
+          } else {
+            entry.innerHTML = `
+              <div class="cv-edu-date">${escapeHtml(edu.dateRange || '')}</div>
+              <div class="cv-edu-main">
+                <div class="cv-edu-header">${titleInst}</div>
+                ${detailsHtml}
+              </div>
+            `;
+          }
 
           currentSec.appendChild(entry);
 
@@ -2188,10 +2228,9 @@
           const sec = document.createElement('section');
           sec.className = `cv-section${isContinued ? ' cv-section-continued' : ''}`;
           sec.dataset.sectionKey = 'certifications';
-          const label = isContinued ? ' <span class="cv-section-cont-label">(Continued)</span>' : '';
           sec.innerHTML = `
             <div class="cv-section-row">
-              <div class="cv-section-title">CERTIFICATES${label}</div>
+              <div class="cv-section-title">CERTIFICATES</div>
               <div class="cv-section-content cv-cert-list"></div>
             </div>
           `;
@@ -2219,7 +2258,8 @@
             formattedDate = /^issued/i.test(dateText) ? dateText : `Issued ${dateText}`;
           }
 
-          const credUrl = cert.credentialUrl && cert.credentialUrl.trim() ? cert.credentialUrl.trim() : '';
+          const rawCredUrl = cert.credentialUrl && cert.credentialUrl.trim() ? cert.credentialUrl.trim() : '';
+          const credUrl = rawCredUrl ? (/^https?:\/\//i.test(rawCredUrl) ? rawCredUrl : `https://${rawCredUrl}`) : '';
           const credId = cert.credentialId && cert.credentialId.trim() ? cert.credentialId.trim() : '';
 
           let credHtml = '';
@@ -2250,12 +2290,24 @@
 
           const item = document.createElement('div');
           item.className = 'cv-cert-item';
-          item.innerHTML = `
-            <div class="cv-cert-title">${title}</div>
-            ${issuerHtml}
-            ${metaHtml}
-            ${detailsHtml}
-          `;
+          if (isSingleCol) {
+            item.innerHTML = `
+              <div class="cv-cert-header-line">
+                <div class="cv-cert-title">${title}</div>
+                <div class="cv-cert-date">${escapeHtml(formattedDate)}</div>
+              </div>
+              ${issuerHtml}
+              ${credHtml ? `<div class="cv-cert-meta">${credHtml}</div>` : ''}
+              ${detailsHtml}
+            `;
+          } else {
+            item.innerHTML = `
+              <div class="cv-cert-title">${title}</div>
+              ${issuerHtml}
+              ${metaHtml}
+              ${detailsHtml}
+            `;
+          }
 
           target.appendChild(item);
 
@@ -2283,10 +2335,9 @@
           const sec = document.createElement('section');
           sec.className = `cv-section${isContinued ? ' cv-section-continued' : ''}`;
           sec.dataset.sectionKey = 'projects';
-          const label = isContinued ? ' <span class="cv-section-cont-label">(Continued)</span>' : '';
           sec.innerHTML = `
             <div class="cv-section-row" style="margin-bottom: 8px;">
-              <div class="cv-section-title">PROJECTS${label}</div>
+              <div class="cv-section-title">PROJECTS</div>
               <div class="cv-section-content"></div>
             </div>
           `;
@@ -2306,7 +2357,8 @@
         let itemsInSec = 0;
 
         cvData.projects.forEach(proj => {
-          const projectUrl = (proj.projectUrl || proj.link || '').trim();
+          const rawProjUrl = (proj.projectUrl || proj.link || '').trim();
+          const projectUrl = rawProjUrl ? (/^https?:\/\//i.test(rawProjUrl) ? rawProjUrl : `https://${rawProjUrl}`) : '';
           let titleHtml = escapeHtml(proj.projectName || '');
           if (projectUrl) {
             titleHtml = `<a href="${escapeHtml(projectUrl)}" target="_blank" rel="noopener noreferrer" class="cv-proj-link">${titleHtml} ↗</a>`;
@@ -2323,13 +2375,23 @@
 
           const entry = document.createElement('div');
           entry.className = 'cv-proj-entry';
-          entry.innerHTML = `
-            <div class="cv-job-date">${escapeHtml(proj.dateRange || '')}</div>
-            <div class="cv-job-main">
-              <div class="cv-job-header">${titleRole}</div>
+          if (isSingleCol) {
+            entry.innerHTML = `
+              <div class="cv-proj-header-line">
+                <div class="cv-proj-header">${titleRole}</div>
+                <div class="cv-proj-date">${escapeHtml(proj.dateRange || '')}</div>
+              </div>
               ${descHtml}
-            </div>
-          `;
+            `;
+          } else {
+            entry.innerHTML = `
+              <div class="cv-job-date">${escapeHtml(proj.dateRange || '')}</div>
+              <div class="cv-job-main">
+                <div class="cv-job-header">${titleRole}</div>
+                ${descHtml}
+              </div>
+            `;
+          }
 
           currentSec.appendChild(entry);
 
@@ -2533,15 +2595,76 @@
       }
     };
 
-    // 2. Direct Export PDF
-    document.getElementById('btn-export-pdf').onclick = async () => {
-      await window.CVPdfExporter.exportDirectPdf(cvData);
-    };
+    // 2. Direct Export PDF (Vector ATS Text Engine)
+    const btnExportPdf = document.getElementById('btn-export-pdf');
+    if (btnExportPdf) {
+      btnExportPdf.onclick = async () => {
+        await window.CVPdfExporter.exportAtsVectorPdf();
+      };
+    }
 
     // 3. Print / Vector PDF
-    document.getElementById('btn-print').onclick = () => {
-      window.CVPdfExporter.printVectorPdf();
-    };
+    const btnPrint = document.getElementById('btn-print');
+    if (btnPrint) {
+      btnPrint.onclick = () => {
+        window.CVPdfExporter.exportAtsVectorPdf();
+      };
+    }
+
+    // 4. Check ATS Plain Text Extraction
+    const btnCheckAts = document.getElementById('btn-check-ats');
+    if (btnCheckAts) {
+      btnCheckAts.onclick = () => {
+        const text = window.CVPdfExporter.getAtsPlainText(cvData);
+        let modal = document.getElementById('ats-verify-modal');
+        if (!modal) {
+          modal = document.createElement('div');
+          modal.id = 'ats-verify-modal';
+          modal.className = 'modal-overlay';
+          modal.innerHTML = `
+            <div class="modal-card">
+              <div class="modal-header">
+                <div class="modal-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                  Verifikasi Ekstraksi Teks ATS
+                </div>
+                <button type="button" class="btn-close-modal" id="btn-close-ats-modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 10px; line-height: 1.45;">
+                  Berikut adalah teks berurutan yang akan dibaca oleh parser ATS (Workday, Taleo, Greenhouse, dll). Semua kata, tanggal, dan bullet terbaca sebagai teks asli (bukan gambar).
+                </p>
+                <textarea id="ats-plain-text-preview" class="form-textarea" rows="15" readonly style="font-family: monospace; font-size: 0.78rem; background: #0b0f17; color: #e5e7eb; border: 1px solid var(--border-color); width: 100%; box-sizing: border-box;"></textarea>
+              </div>
+              <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center;">
+                <span id="ats-stats-count" style="font-size: 0.76rem; color: var(--text-dim);"></span>
+                <div style="display: flex; gap: 8px;">
+                  <button type="button" class="btn btn-secondary btn-sm" id="btn-copy-ats-text">Salin Semua Teks</button>
+                  <button type="button" class="btn btn-accent btn-sm" id="btn-done-ats-modal">Selesai</button>
+                </div>
+              </div>
+            </div>
+          `;
+          document.body.appendChild(modal);
+
+          document.getElementById('btn-close-ats-modal').onclick = () => modal.classList.remove('active');
+          document.getElementById('btn-done-ats-modal').onclick = () => modal.classList.remove('active');
+          modal.onclick = (e) => { if (e.target === modal) modal.classList.remove('active'); };
+
+          document.getElementById('btn-copy-ats-text').onclick = async () => {
+            const ta = document.getElementById('ats-plain-text-preview');
+            await navigator.clipboard.writeText(ta.value);
+            showToast("Teks ATS berhasil disalin ke clipboard!", "success");
+          };
+        }
+
+        const ta = document.getElementById('ats-plain-text-preview');
+        ta.value = text;
+        const wordCount = text.split(/\s+/).filter(Boolean).length;
+        document.getElementById('ats-stats-count').textContent = `${wordCount} kata · ${text.length} karakter`;
+        modal.classList.add('active');
+      };
+    }
 
     // 4. Save to File (Local server API / File System Access API / Download)
     let currentFileHandle = null;

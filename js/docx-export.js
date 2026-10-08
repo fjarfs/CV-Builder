@@ -305,11 +305,11 @@ window.CVWordExporter = {
         ]
       });
 
-      skillsElements.push(createSectionTable("AREAS OF EXPERTISE", [skillsSubTable]));
+      skillsElements.push(createSectionTable("SKILLS", [skillsSubTable]));
       skillsElements.push(new Paragraph({ spacing: { before: 60, after: 60 } }));
     }
 
-    // 5. EMPLOYMENT HISTORY
+    // 5. WORK EXPERIENCE
     if (cvData.employment && cvData.employment.length > 0) {
       const historyRows = [];
 
@@ -325,7 +325,7 @@ window.CVWordExporter = {
                   spacing: { before: 60, after: 40 },
                   children: [
                     new TextRun({
-                      text: "EMPLOYMENT HISTORY",
+                      text: "WORK EXPERIENCE",
                       bold: true,
                       size: 19,
                       font: fontName,

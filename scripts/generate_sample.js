@@ -253,7 +253,7 @@ async function buildSampleDocx() {
       })
     ]
   });
-  skillsElements.push(createSectionTable("AREAS OF EXPERTISE", [skillsSubTable]));
+  skillsElements.push(createSectionTable("SKILLS", [skillsSubTable]));
   skillsElements.push(new Paragraph({ spacing: { before: 60, after: 60 } }));
 
   // Employment
@@ -267,7 +267,7 @@ async function buildSampleDocx() {
           children: [
             new Paragraph({
               spacing: { before: 60, after: 40 },
-              children: [new TextRun({ text: "EMPLOYMENT HISTORY", bold: true, size: 19, font: fontName, color: primaryColor })]
+              children: [new TextRun({ text: "WORK EXPERIENCE", bold: true, size: 19, font: fontName, color: primaryColor })]
             })
           ]
         }),

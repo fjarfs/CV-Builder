@@ -1,32 +1,23 @@
 /**
- * PDF Generator for Modern CV
- * Supports both:
- * 1. Direct one-click PDF download via jsPDF + html2canvas (page-by-page assembly)
- * 2. High-precision vector PDF via browser print dialog
+ * PDF Generator & ATS Text Verification for Modern CV
+ * Provides:
+ * 1. Native High-Precision Vector PDF (100% real selectable text for ATS parsers)
+ * 2. In-App Plain Text Extractor (to verify text sequence matches ATS expectations)
  */
 
 window.CVPdfExporter = {
-  exportDirectPdf: async function(cvData) {
-    const cvElement = document.getElementById('cv-document');
-    if (!cvElement) {
-      alert("CV document preview not found.");
-      return;
+  /**
+   * Main ATS Vector PDF Generator:
+   * Uses browser print engine with dedicated @media print stylesheets.
+   * Produces authentic vector PDF with embedded fonts, selectable text, and clickable links.
+   */
+  exportAtsVectorPdf: async function() {
+    // 1. Wait for web fonts if still loading
+    if (document.fonts && document.fonts.ready) {
+      await document.fonts.ready;
     }
 
-    const safeName = (cvData && cvData.personal && cvData.personal.fullName 
-      ? cvData.personal.fullName 
-      : 'Resume').replace(/[^a-zA-Z0-9_-]/g, '_');
-    const filename = `${safeName}_CV.pdf`;
-
-    // Show indicator
-    const btn = document.getElementById('btn-export-pdf');
-    const originalText = btn ? btn.innerHTML : '';
-    if (btn) {
-      btn.disabled = true;
-      btn.innerHTML = `<svg class="spinner" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"/></svg> Generating PDF...`;
-    }
-
-    // Save current zoom and scroll state
+    // 2. Ensure zoom is reset to 1.0 for exact millimeter rendering
     const originalZoom = (window.getCurrentZoom && typeof window.getCurrentZoom === 'function') 
       ? window.getCurrentZoom() 
       : 1.0;
@@ -35,7 +26,6 @@ window.CVPdfExporter = {
     const originalScrollLeft = previewViewport ? previewViewport.scrollLeft : 0;
 
     try {
-      // 1. Temporarily reset zoom to 1.0 so html2canvas renders exact 210mm (100% scale)
       if (window.setZoom && typeof window.setZoom === 'function') {
         window.setZoom(1.0);
       }
@@ -44,96 +34,18 @@ window.CVPdfExporter = {
         previewViewport.scrollLeft = 0;
       }
 
-      // 2. Add PDF export mode class (hides badges, normalizes margins)
-      cvElement.classList.add('pdf-export-mode');
-
-      // 3. Ensure all web fonts are completely rendered before rasterizing
-      if (document.fonts && document.fonts.ready) {
-        await document.fonts.ready;
+      // 3. Briefly notify user if toast system exists
+      if (typeof window.showToast === 'function') {
+        window.showToast("Membuka dialog cetak... Pilih 'Save as PDF' untuk menyimpan PDF teks asli ATS.", 'success');
       }
 
-      // Give browser layout a brief tick to stabilize
-      await new Promise(resolve => setTimeout(resolve, 80));
+      // Small delay for viewport reflow before opening print dialog
+      await new Promise(resolve => setTimeout(resolve, 120));
 
-      const pages = Array.from(cvElement.querySelectorAll('.cv-page'));
-      if (pages.length === 0) {
-        throw new Error("No CV pages found to export.");
-      }
-
-      // Direct page-by-page assembly via jsPDF + html2canvas
-      // This completely eliminates any slicing bugs, rounding gaps, or double-breaks.
-      const hasJsPdf = typeof window.jspdf !== 'undefined' && typeof window.jspdf.jsPDF !== 'undefined';
-      const hasHtml2Canvas = typeof html2canvas !== 'undefined';
-
-      if (hasJsPdf && hasHtml2Canvas) {
-        const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF({
-          unit: 'mm',
-          format: 'a4',
-          orientation: 'portrait',
-          compress: true
-        });
-
-        for (let i = 0; i < pages.length; i++) {
-          const pageEl = pages[i];
-          if (btn) {
-            btn.innerHTML = `<svg class="spinner" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"/></svg> Halaman ${i + 1}/${pages.length}...`;
-          }
-
-          if (i > 0) {
-            pdf.addPage('a4', 'portrait');
-          }
-
-          const canvas = await html2canvas(pageEl, {
-            scale: 2,
-            useCORS: true,
-            letterRendering: true,
-            scrollY: 0,
-            scrollX: 0,
-            logging: false,
-            backgroundColor: '#ffffff',
-            width: pageEl.offsetWidth,
-            height: pageEl.offsetHeight
-          });
-
-          const imgData = canvas.toDataURL('image/jpeg', 0.98);
-          // Exactly 210mm x 297mm - 100% 1-to-1 mapping
-          pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297, undefined, 'FAST');
-        }
-
-        pdf.save(filename);
-      } else if (typeof html2pdf !== 'undefined') {
-        // Fallback to html2pdf
-        const opt = {
-          margin: 0,
-          filename: filename,
-          image: { type: 'jpeg', quality: 0.98 },
-          html2canvas: {
-            scale: 2,
-            useCORS: true,
-            logging: false,
-            backgroundColor: '#ffffff'
-          },
-          jsPDF: {
-            unit: 'mm',
-            format: 'a4',
-            orientation: 'portrait',
-            compress: true
-          },
-          pagebreak: {
-            mode: 'legacy'
-          }
-        };
-        await html2pdf().set(opt).from(cvElement).save();
-      } else {
-        alert("PDF export library not loaded. Please use the Print / Vector PDF button.");
-      }
-    } catch (err) {
-      console.error("PDF Export Error:", err);
-      alert("Encountered an issue generating direct PDF. You can also use the 'Print / Vector PDF' button for an ultra-sharp PDF!");
+      // 4. Trigger native browser print dialog
+      window.print();
     } finally {
-      // Restore clean preview state
-      cvElement.classList.remove('pdf-export-mode');
+      // 5. Restore user zoom & scroll
       if (window.setZoom && typeof window.setZoom === 'function') {
         window.setZoom(originalZoom);
       }
@@ -141,15 +53,131 @@ window.CVPdfExporter = {
         previewViewport.scrollTop = originalScrollTop;
         previewViewport.scrollLeft = originalScrollLeft;
       }
-      if (btn) {
-        btn.disabled = false;
-        btn.innerHTML = originalText;
-      }
     }
   },
 
+  // Alias for backward compatibility
   printVectorPdf: function() {
-    // Triggers browser print with dedicated print stylesheet
-    window.print();
+    this.exportAtsVectorPdf();
+  },
+
+  exportDirectPdf: async function() {
+    await this.exportAtsVectorPdf();
+  },
+
+  /**
+   * Generates pure sequential plain text of the CV exactly as an ATS parser would read it.
+   */
+  getAtsPlainText: function(cvData) {
+    if (!cvData) return "";
+    const lines = [];
+
+    // Header
+    const p = cvData.personal || {};
+    if (p.fullName) lines.push(p.fullName.toUpperCase());
+    if (p.jobTitle) lines.push(p.jobTitle);
+    
+    const contactParts = [];
+    if (p.location) contactParts.push(p.location);
+    if (p.phone) contactParts.push(p.phone);
+    if (p.email) contactParts.push(p.email);
+    if (contactParts.length) lines.push(contactParts.join(" | "));
+
+    // Links
+    if (cvData.links && cvData.links.length) {
+      lines.push("");
+      lines.push("LINKS");
+      cvData.links.forEach(l => {
+        lines.push(`${l.label}: ${l.url}`);
+      });
+    }
+
+    // Summary
+    if (cvData.summary) {
+      lines.push("");
+      lines.push("PROFESSIONAL SUMMARY");
+      lines.push(cvData.summary.trim());
+    }
+
+    // Skills
+    if (cvData.skills) {
+      lines.push("");
+      lines.push("SKILLS");
+      const c1 = cvData.skills.column1 || [];
+      const c2 = cvData.skills.column2 || [];
+      const allSkills = [...c1, ...c2];
+      lines.push(allSkills.join(" • "));
+    }
+
+    // Work Experience
+    if (cvData.employment && cvData.employment.length) {
+      lines.push("");
+      lines.push("WORK EXPERIENCE");
+      cvData.employment.forEach(job => {
+        const roles = Array.isArray(job.roles) && job.roles.length ? job.roles : [job];
+        roles.forEach(role => {
+          const title = role.jobTitle || "";
+          const company = job.company || "";
+          const dates = role.dateRange || job.companyDateRange || "";
+          const headerLine = [title, company, dates].filter(Boolean).join(" | ");
+          lines.push("");
+          lines.push(headerLine);
+
+          const bullets = role.bullets || [];
+          bullets.forEach(b => {
+            if (b && b.trim()) lines.push(`• ${b.trim()}`);
+          });
+
+          if (role.techStack) {
+            lines.push(`Technologies: ${role.techStack}`);
+          }
+        });
+      });
+    }
+
+    // Education
+    if (cvData.education && cvData.education.length && cvData.settings?.showEducation !== false) {
+      lines.push("");
+      lines.push("EDUCATION");
+      cvData.education.forEach(edu => {
+        const line = [edu.degree, edu.institution, edu.dateRange].filter(Boolean).join(" | ");
+        lines.push(line);
+        if (edu.details) lines.push(edu.details);
+      });
+    }
+
+    // Certifications
+    if (cvData.certifications && cvData.certifications.length && cvData.settings?.showCertifications !== false) {
+      lines.push("");
+      lines.push("CERTIFICATIONS");
+      cvData.certifications.forEach(cert => {
+        const line = [cert.name, cert.issuer, cert.dateRange].filter(Boolean).join(" | ");
+        lines.push(line);
+        if (cert.credentialId) lines.push(`Credential ID: ${cert.credentialId}`);
+      });
+    }
+
+    // Projects
+    if (cvData.projects && cvData.projects.length && cvData.settings?.showProjects !== false) {
+      lines.push("");
+      lines.push("PROJECTS");
+      cvData.projects.forEach(proj => {
+        const line = [proj.projectName, proj.role, proj.dateRange].filter(Boolean).join(" | ");
+        lines.push(line);
+        if (proj.description) lines.push(proj.description);
+        if (proj.projectUrl) lines.push(proj.projectUrl);
+      });
+    }
+
+    // Languages
+    if (cvData.languages && cvData.languages.length && cvData.settings?.showLanguages !== false) {
+      lines.push("");
+      lines.push("LANGUAGES");
+      cvData.languages.forEach(l => {
+        lines.push(`${l.name} (${l.proficiency})`);
+      });
+    }
+
+    return lines.join("\n");
   }
 };

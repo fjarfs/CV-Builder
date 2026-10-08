@@ -1003,6 +1003,16 @@ body {
   letter-spacing: 0.01em;
 }
 
+.cv-header-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cv-header-link:hover {
+  text-decoration: underline;
+  color: #2563eb;
+}
+
 /* CV Section Layout (Divider Line + 2-Column Grid) */
 .cv-section {
   border-top: 1.5px solid var(--cv-border-color);
@@ -1395,6 +1405,128 @@ body {
 }
 
 /* ==========================================================================
+   ATS SINGLE-COLUMN LAYOUT (Executive Industry Standard)
+   Eliminates side-by-side parsing errors and aligns roles, companies, dates.
+   ========================================================================== */
+.layout-single-column .cv-section {
+  border-top: none;
+  padding-top: 0;
+  margin-bottom: 12px;
+}
+
+.layout-single-column .cv-section-row {
+  display: block;
+}
+
+.layout-single-column .cv-section-title {
+  display: block;
+  font-size: 1.02em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #111111;
+  border-bottom: 1.5px solid var(--cv-border-color);
+  padding-bottom: 3px;
+  margin-bottom: 8px;
+}
+
+.layout-single-column .cv-section-content {
+  width: 100%;
+}
+
+.layout-single-column .cv-company-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  column-gap: 8px;
+  margin-bottom: 4px;
+}
+
+.layout-single-column .cv-company-main {
+  font-size: 1.04em;
+  font-weight: 700;
+  color: #111111;
+}
+
+.layout-single-column .cv-company-date {
+  font-size: 0.94em;
+  color: #333333;
+  font-weight: 600;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.layout-single-column .cv-job-entry {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.layout-single-column .cv-role-header-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  column-gap: 8px;
+  margin-bottom: 3px;
+}
+
+.layout-single-column .cv-role-title {
+  font-size: 0.98em;
+  font-weight: 700;
+  color: #111111;
+}
+
+.layout-single-column .cv-job-date {
+  font-size: 0.92em;
+  color: #444444;
+  white-space: nowrap;
+  text-align: right;
+  font-weight: 500;
+}
+
+.layout-single-column .cv-job-bullets {
+  margin-left: 18px;
+  margin-bottom: 6px;
+}
+
+.layout-single-column .cv-edu-entry {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.layout-single-column .cv-edu-header-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  column-gap: 8px;
+  margin-bottom: 2px;
+}
+
+.layout-single-column .cv-proj-entry {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.layout-single-column .cv-proj-header-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  column-gap: 8px;
+  margin-bottom: 2px;
+}
+
+.layout-single-column .cv-cert-item {
+  margin-bottom: 10px;
+}
+
+.layout-single-column .cv-cert-header-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  column-gap: 8px;
+  margin-bottom: 2px;
+}
+
+/* ==========================================================================
    PRINT MEDIA STYLES - Pixel-Perfect Vector Output
    ========================================================================== */
 @media print {
@@ -1466,6 +1598,7 @@ body {
   }
 
   .cv-page-badge,
+  .cv-page-footer,
   .a4-page-break-indicator,
   .a4-page-pill-badge,
   .a4-page-guide {
@@ -1685,5 +1818,86 @@ body {
 .btn-order-move:disabled {
   opacity: 0.25;
   cursor: not-allowed;
+}
+
+/* ==========================================================================
+   ATS Text Verification Modal
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  padding: 20px;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 680px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-height: 85vh;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.modal-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.btn-close-modal {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+  border-radius: 4px;
+}
+
+.btn-close-modal:hover {
+  color: #ffffff;
+}
+
+.modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.modal-footer {
+  padding: 14px 20px;
+  border-top: 1px solid var(--border-color);
+  background: rgba(0, 0, 0, 0.2);
 }
 
